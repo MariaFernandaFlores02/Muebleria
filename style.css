@@ -1,0 +1,149 @@
+/* RESET GENERAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #b3690fba;
+    color: #ffffff;
+}
+
+/* BARRA SUPERIOR (HEADER) */
+.header {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 60px;
+    background-color: #c65906;
+}
+
+/* LOGO Y NOMBRE */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.logo span {
+    font-size: 30px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* ÍCONO CARRITO */
+.carrito img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+/* MENÚ DE NAVEGACIÓN */
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.menu a:hover {
+    color: #8b5e3c;
+}
+
+/* SECCIÓN PRINCIPAL AZUL */
+.inicio {
+    background-color: #6f472e;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+}
+
+/* TÍTULO A LA IZQUIERDA */
+.header-texto {
+    width: 100%;
+    padding: 0 60px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.header-texto h1 {
+    font-size: 42px;
+    color: #ffffff;
+    line-height: 1.2;
+}
+
+/* CONTENEDOR DEL VIDEO (POSICIÓN RELATIVA PARA PERMITIR ELEMENTOS ENCIMA) */
+.video-contenedor {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 170px); /* Ocupa el resto de la pantalla */
+    min-height: 400px;
+    overflow: hidden;
+}
+
+.video-contenedor video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* CAPA DE TEXTO ENCIMA DEL VIDEO (POSITION ABSOLUTE) */
+.contenido-encima {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centra el bloque exactamente al medio del video */
+    width: 90%;
+    max-width: 750px;
+    text-align: center;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.4); /* Fondo semi-transparente para leer el texto fácilmente */
+    padding: 30px;
+    border-radius: 12px;
+    backdrop-filter: blur(4px); /* Efecto cristal opcional */
+}
+
+.contenido-encima p {
+    font-size: 20px;
+    color: #ffffff;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    font-weight: 500;
+}
+
+/* BOTÓN DE ACCIÓN */
+.boton {
+    display: inline-block;
+    padding: 14px 34px;
+    background-color: #8b5e3c;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.boton:hover {
+    background-color: #6f472e;
+    transform: translateY(-2px);
+}
