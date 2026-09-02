@@ -1,4 +1,4 @@
-/* RESET GENERAL */
+
 * {
     margin: 0;
     padding: 0;
@@ -9,6 +9,56 @@ body {
     font-family: Arial, sans-serif;
     background-color: #b3690fba;
     color: #ffffff;
+}
+
+
+.oculto {
+    display: none !important;
+}
+
+/* PANTALLA 1: REGISTRO PANTALLA COMPLETA */
+.pantalla-registro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+}
+
+.video-contenedor-pantalla {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.video-contenedor-pantalla video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.form-registro {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.form-registro input {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 6px;
+    border: none;
+    font-size: 16px;
+    outline: none;
+}
+
+.form-registro button {
+    cursor: pointer;
+    border: none;
+    width: 100%;
 }
 
 /* BARRA SUPERIOR (HEADER) */
@@ -22,7 +72,6 @@ body {
     background-color: #c65906;
 }
 
-/* LOGO Y NOMBRE */
 .logo {
     display: flex;
     align-items: center;
@@ -41,14 +90,18 @@ body {
     color: #ffffff;
 }
 
-/* ÍCONO CARRITO */
+.carrito button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
 .carrito img {
     width: 30px;
     height: 30px;
     object-fit: contain;
 }
 
-/* MENÚ DE NAVEGACIÓN */
 .menu {
     display: flex;
     align-items: center;
@@ -63,11 +116,13 @@ body {
     transition: color 0.3s ease;
 }
 
-.menu a:hover {
-    color: #8b5e3c;
+.menu a:hover,
+.menu a.activo {
+    color: #ffe3cc;
+    border-bottom: 2px solid #ffffff;
 }
 
-/* SECCIÓN PRINCIPAL AZUL */
+/* SECCIÓN INICIO */
 .inicio {
     background-color: #6f472e;
     width: 100%;
@@ -76,7 +131,6 @@ body {
     padding-top: 30px;
 }
 
-/* TÍTULO A LA IZQUIERDA */
 .header-texto {
     width: 100%;
     padding: 0 60px;
@@ -90,11 +144,10 @@ body {
     line-height: 1.2;
 }
 
-/* CONTENEDOR DEL VIDEO (POSICIÓN RELATIVA PARA PERMITIR ELEMENTOS ENCIMA) */
 .video-contenedor {
     position: relative;
     width: 100%;
-    height: calc(100vh - 170px); /* Ocupa el resto de la pantalla */
+    height: calc(100vh - 170px);
     min-height: 400px;
     overflow: hidden;
 }
@@ -106,20 +159,19 @@ body {
     display: block;
 }
 
-/* CAPA DE TEXTO ENCIMA DEL VIDEO (POSITION ABSOLUTE) */
 .contenido-encima {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Centra el bloque exactamente al medio del video */
+    transform: translate(-50%, -50%);
     width: 90%;
     max-width: 750px;
     text-align: center;
     z-index: 2;
-    background-color: rgba(0, 0, 0, 0.4); /* Fondo semi-transparente para leer el texto fácilmente */
+    background-color: rgba(0, 0, 0, 0.4);
     padding: 30px;
     border-radius: 12px;
-    backdrop-filter: blur(4px); /* Efecto cristal opcional */
+    backdrop-filter: blur(4px);
 }
 
 .contenido-encima p {
@@ -130,7 +182,6 @@ body {
     font-weight: 500;
 }
 
-/* BOTÓN DE ACCIÓN */
 .boton {
     display: inline-block;
     padding: 14px 34px;
@@ -141,9 +192,292 @@ body {
     font-weight: bold;
     font-size: 16px;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
 }
 
 .boton:hover {
     background-color: #6f472e;
     transform: translateY(-2px);
+}
+
+/* CATÁLOGO, NOSOTROS, CONTACTO, DETALLE */
+.contenedor-seccion {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.titulo-pagina {
+    font-size: 36px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.subtitulo-pagina {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+/* PRODUCTOS */
+.grilla-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.tarjeta-producto {
+    background-color: #6f472e;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.tarjeta-producto img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.info-producto {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-grow: 1;
+}
+
+.info-producto h3 {
+    font-size: 22px;
+}
+
+.info-producto .precio {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffe3cc;
+    margin-top: auto;
+}
+
+.info-producto .boton {
+    margin-top: 10px;
+    width: 100%;
+}
+
+/* VISTA DE DETALLE */
+.boton-volver {
+    display: inline-block;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 25px;
+    transition: color 0.3s ease;
+}
+
+.boton-volver:hover {
+    color: #ffe3cc;
+}
+
+.detalle-producto-container {
+    background-color: #6f472e;
+    border-radius: 12px;
+    padding: 30px;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.imagen-detalle {
+    flex: 1;
+}
+
+.imagen-detalle img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.info-detalle {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.info-detalle h1 {
+    font-size: 32px;
+}
+
+.precio-detalle {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ffe3cc;
+}
+
+.descripcion-corta {
+    line-height: 1.6;
+    opacity: 0.95;
+}
+
+.acciones-detalle button {
+    border: none;
+    cursor: pointer;
+}
+
+/* NOSOTROS */
+.contenido-nosotros {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.bloque-texto {
+    background-color: #6f472e;
+    padding: 30px;
+    border-radius: 10px;
+    line-height: 1.6;
+}
+
+.bloque-texto h2 {
+    margin-bottom: 15px;
+    color: #ffe3cc;
+}
+
+/* CONTACTO */
+.alerta-exito {
+    background-color: #2e7d32;
+    color: #ffffff;
+    padding: 15px;
+    border-radius: 6px;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 20px auto;
+    font-weight: bold;
+}
+
+.formulario-contacto {
+    background-color: #6f472e;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 35px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.campo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campo-form label {
+    font-weight: bold;
+}
+
+.campo-form input,
+.campo-form textarea {
+    padding: 12px;
+    border-radius: 6px;
+    border: none;
+    font-size: 15px;
+    outline: none;
+}
+
+.formulario-contacto button {
+    border: none;
+    cursor: pointer;
+}
+
+.redes-sociales {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.redes-sociales h3 {
+    margin-bottom: 15px;
+}
+
+.iconos-redes {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.link-red {
+    color: #ffffff;
+    background-color: #6f472e;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.link-red:hover {
+    background-color: #c65906;
+}
+/* ==========================================================================
+   ESTILOS PARA EL FILTRO Y TARJETAS DEL CATÁLOGO
+   ========================================================================== */
+
+.contenedor-filtro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 35px;
+    background-color: #6f472e;
+    padding: 15px 25px;
+    border-radius: 8px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contenedor-filtro label {
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.select-categoria {
+    padding: 10px 15px;
+    border-radius: 6px;
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #ffffff;
+    color: #6f472e;
+    cursor: pointer;
+    outline: none;
+}
+
+/* CORRECCIÓN DE TAMAÑOS DE TARJETAS Y GRILLA */
+.grilla-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    align-items: start;
+}
+
+.tarjeta-producto {
+    background-color: #6f472e;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    height: 380px;
+}
+
+.tarjeta-producto img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background-color: #4a2e1d;
 }

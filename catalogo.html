@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo - Muebles Kolosos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- BARRA SUPERIOR DE NAVEGACIÓN -->
+    <header class="header">
+        <div class="logo">
+            <img src="imagenes/logo.png" alt="Logo Muebles Kolosos">
+            <span>Muebles Kolosos</span>
+        </div>
+
+        <nav class="menu">
+            <div class="carrito">
+                <button><img src="imagenes/carrito.avif" alt="Carrito"></button>
+            </div>
+            <a href="index.html">Inicio</a>
+            <a href="catalogo.html" class="activo">Catálogo</a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="login.html">Iniciar sesión</a>
+        </nav>
+    </header>
+
+    <!-- SECCIÓN DEL CATÁLOGO DE PRODUCTOS -->
+    <main class="contenedor-seccion">
+        <h1 class="titulo-pagina">Nuestro Catálogo</h1>
+        <p class="subtitulo-pagina">Explora nuestra colección exclusiva de muebles para el hogar.</p>
+
+        <!-- MENÚ DESPLEGABLE DE FILTRO DE CATEGORÍAS -->
+        <div class="contenedor-filtro">
+            <label for="filtro-categoria"><strong>Filtrar por categoría:</strong></label>
+            <select id="filtro-categoria" class="select-categoria">
+                <option value="todos">Todos los muebles (15)</option>
+                <option value="sofas">Sofás (5)</option>
+                <option value="mesas">Mesas (5)</option>
+                <option value="camas">Camas (5)</option>
+            </select>
+        </div>
+
+        <!-- GRILLA DE PRODUCTOS (15 PRODUCTOS SIN BOTÓN DE DETALLE) -->
+        <div class="grilla-productos">
+
+            <!-- CATEGORÍA: SOFÁS -->
+            <div class="tarjeta-producto" data-categoria="sofas">
+                <img src="imagenes/sofa.jpg" alt="Sofá Comfort Velvet">
+                <div class="info-producto">
+                    <h3>Sofá Comfort Velvet</h3>
+                    <span class="precio">$450.000</span>
+                </div>
+            </div>
+
+            <div class="tarjeta-producto" data-categoria="sofas">
+                <img src="imagenes/sofa.jpg" alt="Sofá Seccional Premium">
+                <div class="info-producto">
+                    <h3>Sofá Seccional L-Shape</h3>
+                    <span class="precio">$680.000</span>
+                </div>
+            </div>
+
+            <div class="tarjeta-producto" data-categoria="sofas">
+                <img src="imagenes/sofa.jpg" alt="Sillón Reclinable Luxury">
+                <div class="info-producto">
+                    <h3>Sillón Reclinable Leather</h3>
+                    <span class="precio">$310.000</span>
+                </div>
+            </div>
+
+            <div class="tarjeta-producto" data-categoria="sofas">
+                <img src="imagenes/sofa.jpg" alt="Sofá Cama Minimalista">
+                <div class="info-producto">
+                    <h3>Sofá Cama Urban</h3>
+                    <span class="precio">$390.000</span>
+                </div>
+            </div>
+
+            <div class="tarjeta-producto" data-categoria="sofas">
+                <img src="imagenes/sofa.jpg" alt="Loveseat Vintage">
+                <div class="info-producto">
+                    <h3>Loveseat Vintage Classic</h3>
+                    <span class="precio">$280.000</span>
+                </div>
+            </div>
+
+            <!-- CATEGORÍA: MESAS -->
+            <div class="tarjeta-producto" data-categoria="mesas">
+                <img src="imagenes/mesa.jpg" alt="Mesa Comedor Nordik">
+                <div class="info-producto">
+                    <h3>Mesa Comedor Nordik</h3>
+                    <span class="precio">$320.000</span>
+                </div>
+            </div>
+
+            <div class="tarjeta-producto" data-categoria="mesas">
+                <img src="imagenes/mesa.jpg" alt="Mesa de Centro Cristal">
+                <div class="info-producto">
+                    <h3>Mesa de Centro Glass</h3>
+                    <span class="precio">$150.000</span>
+                </div>
+            </div>
+
+            <div class="tarjeta-producto" data-categoria="mesas">
+                <img src="imagenes/mesa.jpg" alt="Mesa de Escritorio Executive">
+                <div class="info-producto">
+                    <h3>Escritorio Executive Wood</h3>
+                    <span class="precio">$240.000</span>
+                </div>
+            </div>
+
+            <div class="tarjeta-producto" data-categoria="mesas">
+                <img src="imagenes/mesa.jpg" alt="Mesa Extensible Comedor">
+                <div class="info-producto">
+                    <h3>Mesa Extensible Royale</h3>
+                    <span class="precio">$420.000</span>
+                </div>
+            </div>
+
+            <div class="tarjeta-producto" data-categoria="mesas">
+                <img src="imagenes/mesa.jpg" alt="Mesa Lateral de Noche">
+                <div class="info-producto">
+                    <h3>Mesa Lateral Minimalist</h3>
+                    <span class="precio">$95.000</span>
+                </div>
+            </div>
+
+            <!-- CATEGORÍA: CAMAS -->
+            <div class="tarjeta-producto" data-categoria="camas">
+                <img src="imagenes/cama.jpg" alt="Cama Rest King">
+                <div class="info-producto">
+                    <h3>Cama Rest King</h3>
+                    <span class="precio">$580.000</span>
+                </div>
+            </div>
+
+            <div class="tarjeta-producto" data-categoria="camas">
+                <img src="imagenes/cama.jpg" alt="Cama Queen Multifuncional">
+                <div class="info-producto">
+                    <h3>Cama Queen Smart Storage</h3>
+                    <span class="precio">$510.000</span>
+                </div>
+            </div>
+
+            <div class="tarjeta-producto" data-categoria="camas">
+                <img src="imagenes/cama.jpg" alt="Cama Matrimonial Tapizada">
+                <div class="info-producto">
+                    <h3>Cama Matrimonial Velvet</h3>
+                    <span class="precio">$430.000</span>
+                </div>
+            </div>
+
+            <div class="tarjeta-producto" data-categoria="camas">
+                <img src="imagenes/cama.jpg" alt="Base de Cama Flotante">
+                <div class="info-producto">
+                    <h3>Base de Cama Floating LED</h3>
+                    <span class="precio">$490.000</span>
+                </div>
+            </div>
+
+            <div class="tarjeta-producto" data-categoria="camas">
+                <img src="imagenes/cama.jpg" alt="Cama Individual Infantil">
+                <div class="info-producto">
+                    <h3>Cama Individual Kids Eco</h3>
+                    <span class="precio">$260.000</span>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- SCRIPT DE FILTRADO DINÁMICO -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const selectorCategoria = document.getElementById("filtro-categoria");
+            const tarjetasProductos = document.querySelectorAll(".tarjeta-producto");
+
+            selectorCategoria.addEventListener("change", (e) => {
+                const categoriaSeleccionada = e.target.value;
+
+                tarjetasProductos.forEach(tarjeta => {
+                    const categoriaProducto = tarjeta.getAttribute("data-categoria");
+
+                    if (categoriaSeleccionada === "todos" || categoriaProducto === categoriaSeleccionada) {
+                        tarjeta.style.display = "flex";
+                    } else {
+                        tarjeta.style.display = "none";
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
