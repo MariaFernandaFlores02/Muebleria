@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muebles Kolosos - Detalle de Producto</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <img src="imagenes/logo.png" alt="Logo Muebles Kolosos">
+            <span>Muebles Kolosos</span>
+        </div>
+        <nav class="menu">
+            <div class="carrito">
+                <button><img src="imagenes/carrito.avif" alt="Carrito"></button>
+            </div>
+            <a href="index.html">Inicio</a>
+            <a href="catalogo.html">Catálogo</a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="login.html">Iniciar sesión</a>
+        </nav>
+    </header>
+
+    <main class="contenedor-seccion">
+        <a href="catalogo.html" class="boton-volver">← Volver al catálogo</a>
+
+        <div class="detalle-producto-container">
+            <div class="imagen-detalle">
+                <img src="imagenes/sofa-odesa.jpg" alt="Producto">
+            </div>
+
+            <div class="info-detalle">
+                <h1>Nombre del Producto</h1>
+                <span class="precio-detalle">$000.000</span>
+                <p class="descripcion-corta">Cargando información del producto...</p>
+                <div class="acciones-detalle">
+                    <button class="boton">Añadir al carrito</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const productos = {
+            "sofa-odesa": {
+                nombre: "Sofá Comfort Odesa",
+                precio: "$450.000",
+                imagen: "imagenes/sofa.png",
+                descripcion: "Sofá de tres puestos de diseño contemporáneo, tapizado en tela suave de alta resistencia con patas de madera maciza."
+            },
+            "sofa-lshape": {
+                nombre: "Sofá Seccional L-Shape",
+                precio: "$680.000",
+                imagen: "imagenes/sofa2.jpg",
+                descripcion: "Espacioso sofá modular en L acolchado, ideal para salas familiares. Incluye cojines decorativos y tapizado texturizado."
+            },
+            "sillon-leather": {
+                nombre: "Sillón Reclinable Leather",
+                precio: "$310.000",
+                imagen: "imagenes/sofa3.jpeg",
+                descripcion: "Sillón individual con sistema de reclinación ergonómico y acabados en piel sintética café de alta durabilidad."
+            },
+            "sofa-cama": {
+                nombre: "Sofá Cama Minimalista",
+                precio: "$390.000",
+                imagen: "imagenes/sofa-cama.jpg",
+                descripcion: "Diseño multifuncional de apertura rápida. Ideal para optimizar espacios sin sacrificar estilo y confort."
+            },
+            "loveseat-vintage": {
+                nombre: "Loveseat Vintage",
+                precio: "$280.000",
+                imagen: "imagenes/loveseat.jpg",
+                descripcion: "Sofá compacto de dos puestos con inspiración clásica, estructura reforzada y cojines de alta densidad."
+            },
+            "mesa-nordik": {
+                nombre: "Mesa Comedor Nordik",
+                precio: "$320.000",
+                imagen: "imagenes/mesa-nordik.jpg",
+                descripcion: "Mesa de comedor estilo escandinavo con cubierta suave y patas de madera clara con recubrimiento protector."
+            },
+            "mesa-centro-cristal": {
+                nombre: "Mesa de Centro Cristal",
+                precio: "$180.000",
+                imagen: "imagenes/mesa-cristal.jpg",
+                descripcion: "Mesa auxiliar con superficie de vidrio templado de alta resistencia y base metálica geométrica."
+            },
+            "comedor-6-puestos": {
+                nombre: "Juego Comedor 6 Puestos",
+                precio: "$750.000",
+                imagen: "imagenes/comedor-6.jpg",
+                descripcion: "Conjunto completo de mesa en madera maciza y 6 sillas ergonómicas tapizadas en tela anti-manchas."
+            },
+            "mesa-lateral-madera": {
+                nombre: "Mesa Lateral Rustik",
+                precio: "$120.000",
+                imagen: "imagenes/mesa-lateral.jpg",
+                descripcion: "Mesa de apoyo ideal para salas o dormitorios, fabricada con acabados rústicos en tonos cálidos."
+            },
+            "escritorio-ejecutivo": {
+                nombre: "Escritorio Ejecutivo Moderno",
+                precio: "$290.000",
+                imagen: "imagenes/escritorio.jpg",
+                descripcion: "Espacio de trabajo funcional con compartimentos integrados y acabado en melamina de alto tráfico."
+            },
+            "cama-king-turin": {
+                nombre: "Cama King Size Turín",
+                precio: "$620.000",
+                imagen: "imagenes/cama-king.jpg",
+                descripcion: "Estructura de cama King Size con espaldar acolchado en tela suave y base reinforced en pino."
+            },
+            "cama-queen-venecia": {
+                nombre: "Cama Queen Size Venecia",
+                precio: "$510.000",
+                imagen: "imagenes/cama-queen.jpg",
+                descripcion: "Diseño elegante con cabecero tapizado de líneas verticales y soporte de gran resistencia."
+            },
+            "velador-minimalista": {
+                nombre: "Mesa de Noche Minimalista",
+                precio: "$95.000",
+                imagen: "imagenes/velador.jpg",
+                descripcion: "Mesa auxiliar para dormitorio con cajón deslizable y espacio inferior de almacenamiento."
+            },
+            "ropero-3-puertas": {
+                nombre: "Clóset Ropero 3 Puertas",
+                precio: "$480.000",
+                imagen: "imagenes/ropero.jpg",
+                descripcion: "Ropero espacioso con percheros de aluminio, cajones internos y espejo frontal en puerta central."
+            },
+            "poltrona-dormitorio": {
+                nombre: "Poltrona de Lectura Accent",
+                precio: "$240.000",
+                imagen: "imagenes/poltrona.jpg",
+                descripcion: "Silla individual decorativa, perfecta para crear un rincón de lectura cómodo en tu habitación."
+            }
+        };
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const parametros = new URLSearchParams(window.location.search);
+            const productoId = parametros.get("id");
+
+            if (productoId && productos[productoId]) {
+                const prod = productos[productoId];
+
+                const titulo = document.querySelector(".info-detalle h1");
+                const precio = document.querySelector(".precio-detalle");
+                const imagen = document.querySelector(".imagen-detalle img");
+                const descripcion = document.querySelector(".descripcion-corta");
+
+                if (titulo) titulo.textContent = prod.nombre;
+                if (precio) precio.textContent = prod.precio;
+                if (imagen) {
+                    imagen.src = prod.imagen;
+                    imagen.alt = prod.nombre;
+                }
+                if (descripcion) descripcion.textContent = prod.descripcion;
+            }
+        });
+    </script>
+</body>
+</html>

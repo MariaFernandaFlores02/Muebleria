@@ -1,4 +1,6 @@
-
+/* ==========================================
+   1. RESET Y BASE
+   ========================================== */
 * {
     margin: 0;
     padding: 0;
@@ -7,16 +9,17 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #b3690fba;
+    background-color: hsla(184, 64%, 56%, 0.707);
     color: #ffffff;
 }
-
 
 .oculto {
     display: none !important;
 }
 
-/* PANTALLA 1: REGISTRO PANTALLA COMPLETA */
+/* ==========================================
+   2. REGISTRO (PANTALLA COMPLETA)
+   ========================================== */
 .pantalla-registro {
     position: fixed;
     top: 0;
@@ -61,7 +64,9 @@ body {
     width: 100%;
 }
 
-/* BARRA SUPERIOR (HEADER) */
+/* ==========================================
+   3. BARRA DE NAVEGACIÓN (HEADER Y MENÚ)
+   ========================================== */
 .header {
     width: 100%;
     height: 80px;
@@ -69,7 +74,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 0 60px;
-    background-color: #c65906;
+    background-color: #61bee3;
 }
 
 .logo {
@@ -122,9 +127,11 @@ body {
     border-bottom: 2px solid #ffffff;
 }
 
-/* SECCIÓN INICIO */
+/* ==========================================
+   4. INICIO 
+   ========================================== */
 .inicio {
-    background-color: #6f472e;
+    background-color: #75c0e6;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -185,7 +192,7 @@ body {
 .boton {
     display: inline-block;
     padding: 14px 34px;
-    background-color: #8b5e3c;
+    background-color: #a15f3d;
     color: #ffffff;
     text-decoration: none;
     border-radius: 6px;
@@ -200,7 +207,9 @@ body {
     transform: translateY(-2px);
 }
 
-/* CATÁLOGO, NOSOTROS, CONTACTO, DETALLE */
+/* ==========================================
+   5. ESTRUCTURA GENERAL DE SECCIONES
+   ========================================== */
 .contenedor-seccion {
     max-width: 1200px;
     margin: 40px auto;
@@ -221,26 +230,65 @@ body {
     opacity: 0.9;
 }
 
-/* PRODUCTOS */
+/* ==========================================
+   6. FILTRO DE CATEGORÍAS (CATÁLOGO)
+   ========================================== */
+.contenedor-filtro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 35px;
+    background-color: #9be4ef;
+    padding: 15px 25px;
+    border-radius: 8px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contenedor-filtro label {
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.select-categoria {
+    padding: 10px 15px;
+    border-radius: 6px;
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #89f3d5;
+    color: #ffffff;
+    cursor: pointer;
+    outline: none;
+}
+
+/* ==========================================
+   7. GRILLA Y TARJETAS DE PRODUCTOS
+   ========================================== */
 .grilla-productos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 30px;
+    align-items: start;
 }
 
 .tarjeta-producto {
-    background-color: #6f472e;
+    background-color: #3a87ce;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
+    min-height: 380px;
 }
 
 .tarjeta-producto img {
     width: 100%;
-    height: 220px;
+    height: 200px;
     object-fit: cover;
+    background-color: #4a2e1d;
 }
 
 .info-producto {
@@ -267,7 +315,9 @@ body {
     width: 100%;
 }
 
-/* VISTA DE DETALLE */
+/* ==========================================
+   8. VISTA DE DETALLE DE PRODUCTO
+   ========================================== */
 .boton-volver {
     display: inline-block;
     color: #ffffff;
@@ -282,7 +332,7 @@ body {
 }
 
 .detalle-producto-container {
-    background-color: #6f472e;
+    background-color: #5bb6b6;
     border-radius: 12px;
     padding: 30px;
     display: flex;
@@ -328,7 +378,9 @@ body {
     cursor: pointer;
 }
 
-/* NOSOTROS */
+/* ==========================================
+   9. PÁGINA NOSOTROS
+   ========================================== */
 .contenido-nosotros {
     display: flex;
     flex-direction: column;
@@ -336,7 +388,7 @@ body {
 }
 
 .bloque-texto {
-    background-color: #6f472e;
+    background-color: #d37beb;
     padding: 30px;
     border-radius: 10px;
     line-height: 1.6;
@@ -344,10 +396,12 @@ body {
 
 .bloque-texto h2 {
     margin-bottom: 15px;
-    color: #ffe3cc;
+    color: #8bf2ea;
 }
 
-/* CONTACTO */
+/* ==========================================
+   10. PÁGINA CONTACTO Y REDES SOCIALES
+   ========================================== */
 .alerta-exito {
     background-color: #2e7d32;
     color: #ffffff;
@@ -421,63 +475,4 @@ body {
 
 .link-red:hover {
     background-color: #c65906;
-}
-/* ==========================================================================
-   ESTILOS PARA EL FILTRO Y TARJETAS DEL CATÁLOGO
-   ========================================================================== */
-
-.contenedor-filtro {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 35px;
-    background-color: #6f472e;
-    padding: 15px 25px;
-    border-radius: 8px;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.contenedor-filtro label {
-    font-size: 16px;
-    color: #ffffff;
-}
-
-.select-categoria {
-    padding: 10px 15px;
-    border-radius: 6px;
-    border: none;
-    font-size: 15px;
-    font-weight: bold;
-    background-color: #ffffff;
-    color: #6f472e;
-    cursor: pointer;
-    outline: none;
-}
-
-/* CORRECCIÓN DE TAMAÑOS DE TARJETAS Y GRILLA */
-.grilla-productos {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 30px;
-    align-items: start;
-}
-
-.tarjeta-producto {
-    background-color: #6f472e;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    height: 380px;
-}
-
-.tarjeta-producto img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    background-color: #4a2e1d;
 }
