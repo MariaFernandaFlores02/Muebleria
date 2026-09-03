@@ -25,8 +25,8 @@
                 <p>Regístrate con tu correo para acceder al sitio y recibir promociones exclusivas.</p>
                 
                 <form id="form-inicial" class="form-registro">
-                    <input type="email" id="correo-usuario" placeholder="Ingresa tu correo aquí..." required>
-                    <button type="submit" class="boton">Registrarse</button>
+                    <input type="email" id="correo-usuario" placeholder="Ingresa tu correo aquí..." >
+                    <button type="submit" class="boton">Comenzar</button>
                 </form>
             </div>
         </div>
@@ -50,7 +50,7 @@
                 <a href="catalogo.html">Catálogo</a>
                 <a href="nosotros.html">Nosotros</a>
                 <a href="contacto.html">Contacto</a>
-                <a href="login.html">Iniciar sesión</a>
+                <a href="Registro.html">Registrate</a>
             </nav>
         </header>
 
@@ -100,15 +100,12 @@
 
             // 2. Al presionar "Registrarse" guardar el estado y mostrar la tienda
             formInicial.addEventListener("submit", (e) => {
-                e.preventDefault();
-                const correo = document.getElementById("correo-usuario").value;
+            e.preventDefault();
 
-                if (correo.trim() !== "") {
-                    // Guardar en la sesión del navegador
-                    sessionStorage.setItem("usuarioRegistrado", "true");
-                    mostrarInicioTienda();
-                }
-            });
+    // Permitir entrar aunque no escriba correo
+    sessionStorage.setItem("usuarioRegistrado", "true");
+    mostrarInicioTienda();
+});
         });
     </script>
 </body>
