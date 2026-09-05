@@ -50,7 +50,7 @@
                 <a href="catalogo.html">Catálogo</a>
                 <a href="nosotros.html">Nosotros</a>
                 <a href="contacto.html">Contacto</a>
-                <a href="Registro.html">Registrate</a>
+                <a href="Iniciar_Sesión.html">Iniciar Sesión</a>
             </nav>
         </header>
 
@@ -77,6 +77,81 @@
                 </div>
             </section>
         </main>
+
+        <!-- FOOTER ESTRUCTURADO Y ALINEADO EN HORIZONTAL -->
+        <footer class="footer-kolosos">
+            <div class="footer-contenido">
+                
+                <!-- COLUMNA 1: NAVEGACIÓN -->
+                <div class="footer-columna">
+                    <h3>NAVEGACIÓN</h3>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="catalogo.html">Catálogo</a></li>
+                        <li><a href="nosotros.html">Nosotros</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                        <li><a href="Iniciar_Sesión.html">Iniciar Sesión</a></li>
+                    </ul>
+                </div>
+
+            
+                <!-- COLUMNA 2: SERVICIO AL CLIENTE -->
+                <div class="footer-columna">
+                    <h3>SERVICIO AL CLIENTE</h3>
+                    <ul>
+                        <li><a href="#">Centro De Ayuda</a></li>
+                        <li><a href="#">Métodos De Pago</a></li>
+                        <li><a href="#">Garantía Kolosos</a></li>
+                        <li><a href="#">Devolución Y Reembolso</a></li>
+                        <li><a href="contacto.html">Contáctanos</a></li>
+                    </ul>
+                </div>
+
+                <!-- COLUMNA 3: ACERCA DE -->
+                <div class="footer-columna">
+                    <h3>ACERCA DE SHOPEE</h3>
+                    <ul>
+                        <li><a href="nosotros.html">Sobre Nosotros</a></li>
+                        <li><a href="#">Políticas</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                        <li><a href="#">Ofertas Relámpago</a></li>
+                        <li><a href="#">Programa de Afiliados</a></li>
+                    </ul>
+                </div>
+
+                <!-- COLUMNA 4: PAGO -->
+                <div class="footer-columna">
+                    <h3>PAGO</h3>
+                    <div class="metodos-pago">
+                        <img src="imagenes/mastercard.png" alt="Mastercard">
+                        <img src="imagenes/visa.png" alt="Visa">
+                        <img src="imagenes/amex.png" alt="Amex">
+                        <img src="imagenes/carnet.png" alt="Carnet">
+                        <img src="imagenes/oxxo.png" alt="Oxxo">
+                        <img src="imagenes/spei.png" alt="SPEI">
+                    </div>
+                </div>
+
+                <!-- COLUMNA 5: SÍGUENOS -->
+                <div class="footer-columna">
+                    <h3>SÍGUENOS</h3>
+                    <ul class="redes-sociales">
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="footer-linea"></div>
+
+            <!-- SECCIÓN INFERIOR HORIZONTAL -->
+            <div class="footer-inferior">
+                <p>©2026 Muebles Kolosos. Todos los Derechos Reservados.</p>
+            
+        </footer>
+
     </div>
 
     <!-- SCRIPT CONTROLADOR DE SESIÓN SIMULADA -->
@@ -100,12 +175,12 @@
 
             // 2. Al presionar "Registrarse" guardar el estado y mostrar la tienda
             formInicial.addEventListener("submit", (e) => {
-            e.preventDefault();
+                e.preventDefault();
 
-    // Permitir entrar aunque no escriba correo
-    sessionStorage.setItem("usuarioRegistrado", "true");
-    mostrarInicioTienda();
-});
+                // Permitir entrar aunque no escriba correo
+                sessionStorage.setItem("usuarioRegistrado", "true");
+                mostrarInicioTienda();
+            });
         });
     </script>
 </body>

@@ -476,3 +476,118 @@ body {
 .link-red:hover {
     background-color: #c65906;
 }
+/* ==========================================
+   11. FOOTER ESTILO SHOPEE (HORIZONAL)
+   ========================================== */
+.footer-kolosos {
+    background-color: #fbfbfb;
+    padding: 40px 20px 20px 20px;
+    font-family: Arial, sans-serif;
+    color: #333333;
+    width: 100%;
+}
+
+.footer-contenido {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+.footer-columna {
+    flex: 1;
+    min-width: 150px;
+}
+
+.footer-columna h3 {
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.footer-columna ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-columna ul li {
+    margin-bottom: 8px;
+}
+
+.footer-columna ul li a {
+    color: #666;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.footer-columna ul li a:hover {
+    color: #000;
+}
+
+.metodos-pago {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    max-width: 160px;
+}
+
+.metodos-pago img {
+    width: 100%;
+    height: auto;
+    border: 1px solid #eee;
+    border-radius: 2px;
+    padding: 2px;
+    background: #fff;
+}
+
+.app-contenedor {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.qr-code {
+    width: 70px;
+    height: 70px;
+    border: 1px solid #ddd;
+    padding: 3px;
+    background: #fff;
+}
+
+.tiendas-app {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.tiendas-app img {
+    height: 20px;
+    width: auto;
+}
+
+.footer-linea {
+    border-top: 1px solid #e8e8e8;
+    margin: 30px auto 15px auto;
+    max-width: 1200px;
+}
+
+.footer-inferior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-size: 12px;
+    color: #777;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.footer-inferior .paises {
+    color: #777;
+}
