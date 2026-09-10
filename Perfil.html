@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil - Muebles Kolosos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- BARRA SUPERIOR DE NAVEGACIÓN -->
+    <header class="header">
+        <div class="logo">
+            <img src="imagenes/logo.png" alt="Logo Muebles Kolosos">
+            <span>Muebles Kolosos</span>
+        </div>
+
+        <nav class="menu">
+            <div class="carrito">
+                <button><img src="imagenes/carrito.avif" alt="Carrito"></button>
+            </div>
+            <a href="index.html">Inicio</a>
+            <a href="catalogo.html">Catálogo</a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="perfil.html" class="activo">Mi Perfil</a>
+        </nav>
+    </header>
+
+    <!-- SECCIÓN DE AUTENTICACIÓN Y PERFIL -->
+    <main class="contenedor-seccion">
+        
+        <!-- ALERTA DE ESTADO -->
+        <div id="alerta-auth" class="alerta-exito oculto"></div>
+
+        <div class="contenedor-auth">
+            
+            <!-- VISTA 1: INICIAR SESIÓN -->
+            <div id="box-login" class="box-auth">
+                <h2 class="titulo-auth">Iniciar Sesión</h2>
+                <form id="form-login" class="formulario-auth">
+                    <div class="campo-form">
+                        <label for="login-email">Correo electrónico</label>
+                        <input type="email" id="login-email" placeholder="tu@correo.com" required>
+                    </div>
+                    <div class="campo-form">
+                        <label for="login-pass">Contraseña</label>
+                        <input type="password" id="login-pass" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="boton">Entrar</button>
+                </form>
+                <p class="texto-cambio-auth">
+                    ¿No tienes una cuenta? <a href="#" id="link-ir-registro">Regístrate aquí</a>
+                </p>
+            </div>
+
+            <!-- VISTA 2: CREAR CUENTA -->
+            <div id="box-registro" class="box-auth oculto">
+                <h2 class="titulo-auth">Crear Cuenta</h2>
+                <form id="form-registro" class="formulario-auth">
+                    <div class="campo-form">
+                        <label for="reg-nombre">Nombre completo</label>
+                        <input type="text" id="reg-nombre" placeholder="Tu nombre y apellido" required>
+                    </div>
+                    <div class="campo-form">
+                        <label for="reg-email">Correo electrónico</label>
+                        <input type="email" id="reg-email" placeholder="tu@correo.com" required>
+                    </div>
+                    <div class="campo-form">
+                        <label for="reg-telefono">Teléfono de contacto</label>
+                        <input type="tel" id="reg-telefono" placeholder="55 1234 5678" required>
+                    </div>
+                    <div class="campo-form">
+                        <label for="reg-direccion">Dirección de envío</label>
+                        <input type="text" id="reg-direccion" placeholder="Calle, número, colonia" required>
+                    </div>
+                    <div class="campo-form">
+                        <label for="reg-cp">Código Postal</label>
+                        <input type="text" id="reg-cp" placeholder="00000" required>
+                    </div>
+                    <div class="campo-form">
+                        <label for="reg-pass">Contraseña</label>
+                        <input type="password" id="reg-pass" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="boton">Registrarse</button>
+                </form>
+                <p class="texto-cambio-auth">
+                    ¿Ya tienes una cuenta? <a href="#" id="link-ir-login">Inicia sesión aquí</a>
+                </p>
+            </div>
+
+            <!-- VISTA 3: PANEL DE USUARIO (LECTURA / EDICIÓN) -->
+            <div id="box-panel-usuario" class="box-auth oculto">
+                <div class="header-perfil">
+                    <div class="avatar-usuario">👤</div>
+                    <h2 id="saludo-usuario">¡Hola, Cliente!</h2>
+                </div>
+
+                <!-- MODO LECTURA -->
+                <div id="vista-datos-lectura">
+                    <h3 class="subtitulo-panel">Mis Datos Personales</h3>
+                    <p class="dato-item"><strong>Nombre:</strong> <span id="lbl-nombre">Maria Flores</span></p>
+                    <p class="dato-item"><strong>Correo:</strong> <span id="lbl-email">floresoregelmariafernanda@gmail.com</span></p>
+                    <p class="dato-item"><strong>Teléfono:</strong> <span id="lbl-telefono">55 9876 5432</span></p>
+                    <p class="dato-item"><strong>Dirección:</strong> <span id="lbl-direccion">Av. Insurgentes Sur 123, Col. Roma</span></p>
+                    <p class="dato-item"><strong>Código Postal:</strong> <span id="lbl-cp">06700</span></p>
+                    
+                    <button id="btn-activar-edicion" class="boton" style="margin-top: 15px;">Editar Datos</button>
+                </div>
+
+                <!-- FORMULARIO DE EDICIÓN -->
+                <form id="form-editar-perfil" class="formulario-auth oculto">
+                    <h3 class="subtitulo-panel">Editar Datos Personales</h3>
+                    
+                    <div class="campo-form">
+                        <label for="edit-nombre">Nombre completo</label>
+                        <input type="text" id="edit-nombre" required>
+                    </div>
+                    <div class="campo-form">
+                        <label for="edit-email">Correo electrónico</label>
+                        <input type="email" id="edit-email" required>
+                    </div>
+                    <div class="campo-form">
+                        <label for="edit-telefono">Teléfono</label>
+                        <input type="tel" id="edit-telefono" required>
+                    </div>
+                    <div class="campo-form">
+                        <label for="edit-direccion">Dirección de envío</label>
+                        <input type="text" id="edit-direccion" required>
+                    </div>
+                    <div class="campo-form">
+                        <label for="edit-cp">Código Postal</label>
+                        <input type="text" id="edit-cp" required>
+                    </div>
+
+                    <button type="submit" class="boton">Guardar Cambios</button>
+                    <button type="button" id="btn-cancelar-edicion" class="boton boton-logout" style="margin-top: 5px;">Cancelar</button>
+                </form>
+
+                <div class="seccion-perfil-info" style="margin-top: 25px;">
+                    <h3 class="subtitulo-panel">Mis Pedidos Recientes</h3>
+                    <div class="tarjeta-historial">
+                        <p><strong>Pedido #1042</strong> - Sofá Comfort Odesa</p>
+                        <span class="estado-pedido">En camino 🚚</span>
+                    </div>
+                </div>
+
+                <button id="btn-logout" class="boton boton-logout" style="margin-top: 20px;">Cerrar Sesión</button>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER ESTRUCTURADO -->
+    <footer class="footer-kolosos">
+        <div class="footer-contenido">
+            <div class="footer-columna">
+                <h3>NAVEGACIÓN</h3>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="catalogo.html">Catálogo</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="perfil.html">Perfil</a></li>
+                </ul>
+            </div>
+            <div class="footer-columna">
+                <h3>SERVICIO AL CLIENTE</h3>
+                <ul>
+                    <li><a href="#">Centro De Ayuda</a></li>
+                    <li><a href="#">Garantía Kolosos</a></li>
+                    <li><a href="contacto.html">Contáctanos</a></li>
+                </ul>
+            </div>
+            <div class="footer-columna">
+                <h3>PAGO</h3>
+                <div class="metodos-pago">
+                    <img src="imagenes/mastercard.png" alt="Mastercard">
+                    <img src="imagenes/visa.png" alt="Visa">
+                    <img src="imagenes/oxxo.png" alt="Oxxo">
+                </div>
+            </div>
+        </div>
+        <div class="footer-linea"></div>
+        <div class="footer-inferior">
+            <p>©2026 Muebles Kolosos. Todos los Derechos Reservados.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT INTERACTIVO CON PERSISTENCIA DE SESIÓN -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const boxLogin = document.getElementById("box-login");
+            const boxRegistro = document.getElementById("box-registro");
+            const boxPanel = document.getElementById("box-panel-usuario");
+            
+            const linkIrRegistro = document.getElementById("link-ir-registro");
+            const linkIrLogin = document.getElementById("link-ir-login");
+            
+            const formLogin = document.getElementById("form-login");
+            const formRegistro = document.getElementById("form-registro");
+            const formEditarPerfil = document.getElementById("form-editar-perfil");
+            const vistaLectura = document.getElementById("vista-datos-lectura");
+            
+            const btnActivarEdicion = document.getElementById("btn-activar-edicion");
+            const btnCancelarEdicion = document.getElementById("btn-cancelar-edicion");
+            const btnLogout = document.getElementById("btn-logout");
+            
+            const alertaAuth = document.getElementById("alerta-auth");
+            const saludoUsuario = document.getElementById("saludo-usuario");
+
+            // CARGAR Y VERIFICAR SESIÓN EN LOCALSTORAGE
+            function cargarDatosPerfil() {
+                const usuarioGuardado = JSON.parse(localStorage.getItem("usuario_kolosos"));
+                
+                if (usuarioGuardado && usuarioGuardado.sesionActiva) {
+                    document.getElementById("lbl-nombre").textContent = usuarioGuardado.nombre;
+                    document.getElementById("lbl-email").textContent = usuarioGuardado.email;
+                    document.getElementById("lbl-telefono").textContent = usuarioGuardado.telefono;
+                    document.getElementById("lbl-direccion").textContent = usuarioGuardado.direccion;
+                    document.getElementById("lbl-cp").textContent = usuarioGuardado.cp;
+
+                    saludoUsuario.textContent = `¡Hola, ${usuarioGuardado.nombre}!`;
+
+                    boxLogin.classList.add("oculto");
+                    boxRegistro.classList.add("oculto");
+                    boxPanel.classList.remove("oculto");
+                    vistaLectura.classList.remove("oculto");
+                    formEditarPerfil.classList.add("oculto");
+                } else {
+                    boxPanel.classList.add("oculto");
+                    boxLogin.classList.remove("oculto");
+                }
+            }
+
+            // EJECUTAR COMPROBACIÓN
+            cargarDatosPerfil();
+
+            // NAVEGACIÓN ENTRE LOGIN Y REGISTRO
+            linkIrRegistro.addEventListener("click", (e) => {
+                e.preventDefault();
+                boxLogin.classList.add("oculto");
+                boxRegistro.classList.remove("oculto");
+                alertaAuth.classList.add("oculto");
+            });
+
+            linkIrLogin.addEventListener("click", (e) => {
+                e.preventDefault();
+                boxRegistro.classList.add("oculto");
+                boxLogin.classList.remove("oculto");
+                alertaAuth.classList.add("oculto");
+            });
+
+            // INICIAR SESIÓN
+            formLogin.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const emailIngresado = document.getElementById("login-email").value;
+                
+                const datosUsuario = {
+                    nombre: "Maria Flores",
+                    email: emailIngresado,
+                    telefono: "55 9876 5432",
+                    direccion: "Av. Insurgentes Sur 123, Col. Roma",
+                    cp: "06700",
+                    sesionActiva: true
+                };
+
+                localStorage.setItem("usuario_kolosos", JSON.stringify(datosUsuario));
+                cargarDatosPerfil();
+
+                alertaAuth.textContent = "¡Has iniciado sesión con éxito!";
+                alertaAuth.classList.remove("oculto");
+                formLogin.reset();
+            });
+
+            // CREAR CUENTA
+            formRegistro.addEventListener("submit", (e) => {
+                e.preventDefault();
+                
+                const datosNuevoUsuario = {
+                    nombre: document.getElementById("reg-nombre").value,
+                    email: document.getElementById("reg-email").value,
+                    telefono: document.getElementById("reg-telefono").value,
+                    direccion: document.getElementById("reg-direccion").value,
+                    cp: document.getElementById("reg-cp").value,
+                    sesionActiva: true
+                };
+
+                localStorage.setItem("usuario_kolosos", JSON.stringify(datosNuevoUsuario));
+                cargarDatosPerfil();
+
+                alertaAuth.textContent = "¡Cuenta creada e inicio de sesión exitoso!";
+                alertaAuth.classList.remove("oculto");
+                formRegistro.reset();
+            });
+
+            // ACTIVAR MODO EDICIÓN
+            btnActivarEdicion.addEventListener("click", () => {
+                document.getElementById("edit-nombre").value = document.getElementById("lbl-nombre").textContent;
+                document.getElementById("edit-email").value = document.getElementById("lbl-email").textContent;
+                document.getElementById("edit-telefono").value = document.getElementById("lbl-telefono").textContent;
+                document.getElementById("edit-direccion").value = document.getElementById("lbl-direccion").textContent;
+                document.getElementById("edit-cp").value = document.getElementById("lbl-cp").textContent;
+
+                vistaLectura.classList.add("oculto");
+                formEditarPerfil.classList.remove("oculto");
+                alertaAuth.classList.add("oculto");
+            });
+
+            // CANCELAR EDICIÓN
+            btnCancelarEdicion.addEventListener("click", () => {
+                formEditarPerfil.classList.add("oculto");
+                vistaLectura.classList.remove("oculto");
+            });
+
+            // GUARDAR CAMBIOS
+            formEditarPerfil.addEventListener("submit", (e) => {
+                e.preventDefault();
+                
+                const datosActualizados = {
+                    nombre: document.getElementById("edit-nombre").value,
+                    email: document.getElementById("edit-email").value,
+                    telefono: document.getElementById("edit-telefono").value,
+                    direccion: document.getElementById("edit-direccion").value,
+                    cp: document.getElementById("edit-cp").value,
+                    sesionActiva: true
+                };
+
+                localStorage.setItem("usuario_kolosos", JSON.stringify(datosActualizados));
+                cargarDatosPerfil();
+
+                alertaAuth.textContent = "¡Tus datos han sido actualizados correctamente!";
+                alertaAuth.classList.remove("oculto");
+            });
+
+            // CERRAR SESIÓN
+            btnLogout.addEventListener("click", () => {
+                localStorage.removeItem("usuario_kolosos");
+                boxPanel.classList.add("oculto");
+                boxLogin.classList.remove("oculto");
+                alertaAuth.textContent = "Sesión cerrada correctamente.";
+                alertaAuth.classList.remove("oculto");
+            });
+        });
+    </script>
+</body>
+
+</html>
