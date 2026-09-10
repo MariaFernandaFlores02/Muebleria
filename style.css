@@ -214,6 +214,7 @@ body {
     max-width: 1200px;
     margin: 40px auto;
     padding: 0 20px;
+    min-height: calc(100vh - 280px);
 }
 
 .titulo-pagina {
@@ -480,11 +481,12 @@ body {
    11. FOOTER ESTILO SHOPEE (HORIZONAL)
    ========================================== */
 .footer-kolosos {
-    background-color: #fbfbfb;
-    padding: 40px 20px 20px 20px;
+    background-color: #ffffff;
+    padding: 30px 20px 15px 20px;
     font-family: Arial, sans-serif;
     color: #333333;
     width: 100%;
+    border-top: 1px solid #e0e0e0;
 }
 
 .footer-contenido {
@@ -590,4 +592,44 @@ body {
 
 .footer-inferior .paises {
     color: #777;
+}
+/* ==========================================
+   MÓDULO DE PERFIL Y AUTENTICACIÓN
+   ========================================== */
+.contenedor-auth {
+    max-width: 450px;
+    margin: 20px auto 50px auto;
+}
+
+.box-auth {
+    background-color: #6f472e;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.titulo-auth {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 26px;
+    color: #ffffff;
+}
+
+.formulario-auth {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.texto-cambio-auth {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.texto-cambio-auth a {
+    color: #ffe3cc;
+    font-weight: bold;
+    text-decoration: underline;
 }
