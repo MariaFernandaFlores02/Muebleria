@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - Muebles Kolosos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAVEGACIÓN ADMINISTRATIVA -->
+    <header class="header-principal">
+        <div class="nav-contenedor">
+            <a href="index.html" class="logo-marca">KOLOSOS ADMIN</a>
+            <ul class="menu-navegacion">
+                <li><a href="catalogo.html">Ver Tienda</a></li>
+                <li><a href="perfil.html">Perfil</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <div id="box-admin-panel" class="contenedor-seccion">
+            
+            <!-- ENCABEZADO Y BOTÓN DE SALIDA -->
+            <div class="encabezado-panel-admin">
+                <h1>Panel de Control Operativo</h1>
+                <button id="btn-logout-admin" class="boton-logout-admin">Cerrar Sesión Admin</button>
+            </div>
+
+            <!-- TARJETAS DE MÉTRICAS GENERALES -->
+            <div class="grilla-metricas-admin">
+                <div class="tarjeta-metrica tarjeta-metrica-productos">
+                    <h3>Productos en Catálogo</h3>
+                    <p class="numero-metrica" id="cant-productos">0</p>
+                </div>
+                <div class="tarjeta-metrica tarjeta-metrica-pedidos">
+                    <h3>Pedidos Recibidos</h3>
+                    <p class="numero-metrica" id="cant-pedidos">8</p>
+                </div>
+                <div class="tarjeta-metrica tarjeta-metrica-promos">
+                    <h3>Promociones Activas</h3>
+                    <p class="numero-metrica" id="cant-promos">0</p>
+                </div>
+            </div>
+
+            <!-- TABLA DE INVENTARIO GENERAL Y OFERTAS DE CATEGORÍA -->
+            <div class="seccion-admin-panel">
+                <h2>Inventario General de Productos y Promociones</h2>
+                
+                <table class="tabla-admin">
+                    <thead>
+                        <tr>
+                            <th>Imagen</th>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Categoría</th>
+                            <th>Precio Base</th>
+                            <th>Stock</th>
+                            <th>Estado / Promoción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-inventario-admin">
+                        <!-- Carga dinámica vía JS -->
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer-principal">
+        <div class="footer-bottom">
+            <p>&copy; 2026 Muebles Kolosos - Panel de Control Interno</p>
+        </div>
+    </footer>
+
+    <!-- LOGICA JS -->
+    <script src="productos.js"></script>
+    <script>
+        function renderizarInventarioAdmin() {
+            const productos = obtenerProductos();
+            const tabla = document.getElementById("tabla-inventario-admin");
+            
+            if (!tabla) return;
+            tabla.innerHTML = "";
+
+            let conteoPromos = 0;
+
+            productos.forEach(prod => {
+                const tr = document.createElement("tr");
+
+                // Badge de stock
+                let badgeStock = `<span class="badge-stock badge-disponible">${prod.stock} disponibles</span>`;
+                if (prod.stock === 0) {
+                    badgeStock = `<span class="badge-stock badge-agotado">Agotado</span>`;
+                } else if (prod.stock <= 2) {
+                    badgeStock = `<span class="badge-stock badge-ultimo">¡Últimas ${prod.stock}!</span>`;
+                }
+
+                // Detección de ofertas/promociones
+                const tienePromo = prod.enOferta || prod.categoria === "sofas" || prod.stock === 1;
+                if (tienePromo) conteoPromos++;
+
+                const badgePromo = tienePromo 
+                    ? `<span class="badge-oferta">🔥 En Oferta (${prod.categoria.toUpperCase()})</span>`
+                    : `<span class="texto-regular">Precio Regular</span>`;
+
+                tr.innerHTML = `
+                    <td>
+                        <img src="${prod.imagen}" alt="${prod.nombre}" class="img-tabla-admin">
+                    </td>
+                    <td><strong>${prod.id}</strong></td>
+                    <td>${prod.nombre}</td>
+                    <td class="texto-categoria">${prod.categoria}</td>
+                    <td>${prod.precio}</td>
+                    <td>${badgeStock}</td>
+                    <td>${badgePromo}</td>
+                `;
+
+                tabla.appendChild(tr);
+            });
+
+            document.getElementById("cant-productos").textContent = productos.length;
+            document.getElementById("cant-promos").textContent = conteoPromos;
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            renderizarInventarioAdmin();
+        });
+    </script>
+</body>
+</html>

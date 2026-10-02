@@ -321,7 +321,7 @@ body {
    ========================================== */
 .boton-volver {
     display: inline-block;
-    color: #ffffff;
+    color: #8c4f4f;
     text-decoration: none;
     font-weight: bold;
     margin-bottom: 25px;
@@ -477,6 +477,7 @@ body {
 .link-red:hover {
     background-color: #c65906;
 }
+
 /* ==========================================
    11. FOOTER ESTILO SHOPEE (HORIZONAL)
    ========================================== */
@@ -593,6 +594,7 @@ body {
 .footer-inferior .paises {
     color: #777;
 }
+
 /* ==========================================
    MÓDULO DE PERFIL Y AUTENTICACIÓN
    ========================================== */
@@ -632,4 +634,559 @@ body {
     color: #ffe3cc;
     font-weight: bold;
     text-decoration: underline;
+}
+
+/* ==========================================
+   PANEL DE ADMINISTRACIÓN Y MENÚ LATERAL - KOLOSOS
+   ========================================== */
+
+/* Botón Hamburguesa */
+.btn-hamburguesa {
+    background: transparent;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+}
+
+/* Menú Lateral Desplegable (Estilo Amazon) */
+.sidebar-menu {
+    position: fixed;
+    top: 0;
+    left: -320px;
+    width: 300px;
+    height: 100%;
+    background-color: #ffffff;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: left 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-menu.activo {
+    left: 0;
+}
+
+.sidebar-header {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sidebar-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.btn-cerrar-sidebar {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.sidebar-content {
+    padding: 20px 0;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.sidebar-seccion-titulo {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #888888;
+    padding: 10px 20px 5px 20px;
+    font-weight: 700;
+}
+
+.sidebar-link {
+    display: block;
+    padding: 12px 20px;
+    color: #333333;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.sidebar-link:hover {
+    background-color: #f0f4f8;
+    color: #0066cc;
+}
+
+/* Fondo oscuro al desplegar el menú */
+.overlay-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+    display: none;
+}
+
+.overlay-sidebar.activo {
+    display: block;
+}
+
+/* Encabezado y Métricas Admin */
+.encabezado-panel-admin {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 25px;
+}
+
+.encabezado-panel-admin h1 {
+    font-size: 1.5rem;
+    color: #1a1a1a;
+    margin: 0;
+    font-weight: 700;
+}
+
+.opciones-login-admin {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+    color: #555555;
+}
+
+.opciones-login-admin a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.enlace-inferior-admin {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 0.9rem;
+}
+
+.enlace-inferior-admin a {
+    color: #0066cc;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.grilla-metricas-admin {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.tarjeta-metrica {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-left: 5px solid #0066cc;
+}
+
+.tarjeta-metrica h3 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: #666666;
+    margin: 0 0 10px 0;
+}
+
+.tarjeta-metrica .numero-metrica {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.tarjeta-metrica-productos { border-left-color: #2563eb; }
+.tarjeta-metrica-pedidos { border-left-color: #10b981; }
+.tarjeta-metrica-promos { border-left-color: #f59e0b; }
+
+.boton-logout-admin {
+    background-color: #dc2626;
+    color: #ffffff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Tablas y Módulos de Administración */
+.seccion-admin-panel {
+    background: #554e4e;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.tabla-admin {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.tabla-admin th, .tabla-admin td {
+    border-bottom: 1px solid #eeeeee;
+    padding: 12px 10px;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.tabla-admin th {
+    background-color: #b3c2d2;
+    color: #475569;
+}
+
+.badge-stock {
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.badge-agotado { background: #ded5d5; color: #dc2626; }
+.badge-ultimo { background: #fef3c7; color: #d97706; }
+.badge-disponible { background: #dcfce7; color: #15803d; }
+.badge-enviado { background: #e0e7ff; color: #4338ca; }
+
+/* ==========================================
+   15. CORRECCIÓN DE VISIBILIDAD DE TEXTOS Y LECTURA
+   ========================================== */
+
+/* Asegura que títulos y textos sobre contenedores blancos sean visibles y oscuros */
+.tarjeta-producto, 
+#detalle-contenedor, 
+#seccion-carrito-lleno, 
+table, 
+#box-admin-panel {
+    color: #222222 !important;
+}
+
+.tarjeta-producto h3, 
+#detalle-contenedor h2, 
+#detalle-contenedor h3, 
+#detalle-contenedor p, 
+#seccion-carrito-lleno p, 
+#seccion-carrito-lleno h3, 
+#seccion-carrito-lleno th, 
+#seccion-carrito-lleno td,
+#box-admin-panel h2, 
+#box-admin-panel h3, 
+#box-admin-panel p, 
+#box-admin-panel th, 
+#box-admin-panel td,
+#contenedor-relacionados h4 {
+    color: #222222 !important;
+}
+
+/* Entradas de texto, selects y buscadores legibles */
+input[type="text"], 
+input[type="email"], 
+input[type="password"], 
+input[type="number"], 
+select {
+    color: #222222 !important;
+    background-color: #ffffff !important;
+}
+
+/* Ajuste de select de categorías en el filtro superior */
+.select-categoria {
+    color: #222222 !important;
+}
+
+/* Mantiene el precio resaltado en naranja/marrón */
+.tarjeta-producto p, 
+.precio, 
+#lbl-total {
+    color: #d35400 !important;
+}
+/* ==========================================
+   AGREGADO: TABLA DE INVENTARIO Y OFERTAS (ADMIN)
+   ========================================== */
+
+/* Contenedor blanco para la sección de inventario */
+.seccion-admin-panel {
+    background-color: #ffffff !important;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    margin-top: 30px;
+}
+
+.seccion-admin-panel h2 {
+    color: #1a1a1a !important;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+/* Tabla de Inventario Admin */
+.tabla-admin {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.tabla-admin th {
+    background-color: #2563eb !important;
+    color: #ffffff !important;
+    padding: 12px;
+    text-align: left;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.tabla-admin td {
+    padding: 12px;
+    border-bottom: 1px solid #e5e7eb;
+    color: #374151 !important;
+    font-size: 0.9rem;
+}
+
+.tabla-admin tr:hover {
+    background-color: #f9fafb;
+}
+
+/* Imagen miniatura en la tabla */
+.img-tabla-admin {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* Badge distintivo de oferta/promoción */
+.badge-oferta {
+    background-color: #fef3c7;
+    color: #b45309;
+    border: 1px solid #f59e0b;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.texto-regular {
+    color: #888888 !important;
+    font-size: 0.85rem;
+}
+
+.texto-categoria {
+    text-transform: capitalize;
+    font-weight: bold;
+}
+/* ==========================================
+   ESTILOS DE VISTA DE CARRITO DUAL (TARJETAS + RESUMEN)
+   ========================================== */
+.titulo-carrito {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 25px;
+    color: #1f2937;
+}
+
+.layout-carrito {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 25px;
+    align-items: start;
+}
+
+@media (max-width: 850px) {
+    .layout-carrito {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Tarjeta individual de producto en el carrito */
+.item-tarjeta-carrito {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.img-item-carrito {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.info-item-carrito {
+    flex: 1;
+}
+
+.titulo-item-carrito {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 4px;
+}
+
+.precio-unitario-carrito {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #1f2937;
+}
+
+/* Controles de cantidad (+ / -) */
+.controles-cantidad-carrito {
+    display: flex;
+    align-items: center;
+    background-color: #f3f4f6;
+    border-radius: 6px;
+    padding: 3px 8px;
+    gap: 10px;
+}
+
+.btn-cant-carrito {
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #4b5563;
+    cursor: pointer;
+}
+
+.num-cant-carrito {
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.precio-total-item {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #1f2937;
+    min-width: 90px;
+    text-align: right;
+}
+
+.btn-eliminar-item {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.btn-eliminar-item:hover {
+    color: #ef4444;
+}
+
+/* Tarjeta lateral de Resumen de Compra */
+.tarjeta-resumen-compra {
+    background-color: #e2e8f0;
+    border-radius: 12px;
+    padding: 22px;
+}
+
+.tarjeta-resumen-compra h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 20px;
+}
+
+.fila-resumen {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    color: #4b5563;
+}
+
+.fila-resumen.fila-descuento {
+    color: #059669;
+}
+
+.fila-resumen.fila-total {
+    border-top: 1px solid #cbd5e1;
+    padding-top: 15px;
+    margin-top: 15px;
+    font-size: 1.1rem;
+    color: #1f2937;
+}
+
+/* Formulario de cupón */
+.box-cupon-descuento {
+    display: flex;
+    gap: 8px;
+    margin: 20px 0;
+}
+
+.box-cupon-descuento input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    outline: none;
+}
+
+.box-cupon-descuento button {
+    background: none;
+    border: none;
+    color: #2563eb;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* Botón Ir a pagar */
+.btn-ir-pagar {
+    width: 100%;
+    background-color: #064e3b;
+    color: #ffffff;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-ir-pagar:hover {
+    background-color: #022c22;
+}
+
+/* Notificación Toast inferior */
+.toast-notificacion {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #064e3b;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: none;
+}
+
+.toast-notificacion.activo {
+    display: block;
 }
