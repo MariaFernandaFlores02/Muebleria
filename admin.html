@@ -3,130 +3,719 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Administración - Muebles Kolosos</title>
+    <title>Panel de Administración - Kolosos</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- NAVEGACIÓN ADMINISTRATIVA -->
-    <header class="header-principal">
-        <div class="nav-contenedor">
-            <a href="index.html" class="logo-marca">KOLOSOS ADMIN</a>
-            <ul class="menu-navegacion">
-                <li><a href="catalogo.html">Ver Tienda</a></li>
-                <li><a href="perfil.html">Perfil</a></li>
-            </ul>
+    <div id="overlay-sidebar" class="overlay-sidebar"></div>
+
+    <!-- MENÚ HAMBURGUESA LATERAL (ESTILO AMAZON) -->
+    <aside id="sidebar-menu" class="sidebar-menu">
+        <div class="sidebar-header">
+            <h3>Hola, Administrador</h3>
+            <button id="btn-cerrar-sidebar" class="btn-cerrar-sidebar">✕</button>
         </div>
+        <div class="sidebar-content">
+            <div class="sidebar-seccion-titulo">Módulos de Control</div>
+            <a href="#" class="sidebar-link" data-seccion="metricas">📊 Métricas Generales</a>
+            <a href="#" class="sidebar-link" data-seccion="inventario">📦 Productos e Inventario</a>
+            <a href="#" class="sidebar-link" data-seccion="promociones">🏷️ Promociones y Ofertas</a>
+            <a href="#" class="sidebar-link" data-seccion="pedidos">🚚 Control de Pedidos</a>
+        </div>
+    </aside>
+
+    <header class="header">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <button id="btn-abrir-sidebar" class="btn-hamburguesa">
+                ☰ <span>Menú</span>
+            </button>
+            <div class="logo">
+                <img src="logo.png" alt="Kolosos Logo" onerror="this.src='https://via.placeholder.com/50'">
+                <span>KOLOSOS ADMIN</span>
+            </div>
+        </div>
+        <nav class="menu">
+            <a href="#" class="activo">Panel Admin</a>
+        </nav>
     </header>
 
-    <main>
-        <div id="box-admin-panel" class="contenedor-seccion">
+    <main class="contenedor-seccion">
+
+        <!-- PASO 1: LOGIN ADMIN -->
+        <section id="box-login-admin" class="contenedor-auth">
+            <div class="box-auth">
+                <h2 class="titulo-auth">Iniciar Sesión - Administrador</h2>
+                
+                <form id="form-login-admin" class="formulario-auth">
+                    <div class="campo-form">
+                        <label for="admin-email">Correo Electrónico Admin</label>
+                        <input type="text" id="admin-email" placeholder="admin@kolosos.com">
+                    </div>
+
+                    <div class="campo-form">
+                        <label for="admin-pass">Contraseña</label>
+                        <input type="password" id="admin-pass" placeholder="••••••••">
+                    </div>
+
+                    <div class="opciones-login-admin">
+                        <label>
+                            <input type="checkbox" id="recordar-pass"> Recordar contraseña
+                        </label>
+                        <a href="#" id="link-olvide-pass">¿Olvidaste tu contraseña?</a>
+                    </div>
+
+                    <button type="submit" class="boton">Ingresar al Panel</button>
+                </form>
+
+                <p id="msg-admin-alerta" class="alerta-admin-mensaje oculto"></p>
+            </div>
+
+            <div class="enlace-inferior-admin">
+                <p>
+                    ¿Eres cliente? <a href="perfil.html">Ir a Mi Perfil de Cliente</a>
+                </p>
+            </div>
+        </section>
+
+
+        <!-- PASO 2: CONTENIDO PANEL ADMIN -->
+        <section id="panel-admin-contenido" class="oculto">
             
-            <!-- ENCABEZADO Y BOTÓN DE SALIDA -->
             <div class="encabezado-panel-admin">
-                <h1>Panel de Control Operativo</h1>
+                <h1 id="titulo-seccion-actual">Panel de Control Operativo</h1>
                 <button id="btn-logout-admin" class="boton-logout-admin">Cerrar Sesión Admin</button>
             </div>
 
-            <!-- TARJETAS DE MÉTRICAS GENERALES -->
-            <div class="grilla-metricas-admin">
-                <div class="tarjeta-metrica tarjeta-metrica-productos">
-                    <h3>Productos en Catálogo</h3>
-                    <p class="numero-metrica" id="cant-productos">0</p>
-                </div>
-                <div class="tarjeta-metrica tarjeta-metrica-pedidos">
-                    <h3>Pedidos Recibidos</h3>
-                    <p class="numero-metrica" id="cant-pedidos">8</p>
-                </div>
-                <div class="tarjeta-metrica tarjeta-metrica-promos">
-                    <h3>Promociones Activas</h3>
-                    <p class="numero-metrica" id="cant-promos">0</p>
-                </div>
-            </div>
+<!-- VISTA 1: METRICAS -->
+<div id="vista-metricas" class="seccion-admin-panel">
+    <div class="grilla-metricas-admin">
+        <div class="tarjeta-metrica tarjeta-metrica-productos">
+            <h3>Productos en Catálogo</h3>
+            <p class="numero-metrica" id="cant-productos-metricas">15</p>
+        </div>
+        <div class="tarjeta-metrica tarjeta-metrica-pedidos">
+            <h3>Pedidos Recibidos</h3>
+            <p class="numero-metrica">8</p>
+        </div>
+        <div class="tarjeta-metrica tarjeta-metrica-promos">
+            <h3>Promociones Activas</h3>
+            <p class="numero-metrica" id="cant-promos-metricas">2</p>
+        </div>
+    </div>
 
-            <!-- TABLA DE INVENTARIO GENERAL Y OFERTAS DE CATEGORÍA -->
-            <div class="seccion-admin-panel">
-                <h2>Inventario General de Productos y Promociones</h2>
+    <!-- NUEVA SECCIÓN: TABLA DE INVENTARIO GENERAL Y OFERTAS -->
+    <div class="seccion-admin-panel" style="margin-top: 30px;">
+        <h2 style="color: #ffffff; margin-bottom: 15px;">Inventario General de Productos y Ofertas</h2>
+
+        <table class="tabla-admin">
+            <thead>
+                <tr>
+                    <th>Imagen</th>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Categoría</th>
+                    <th>Precio Base</th>
+                    <th>Stock</th>
+                    <th>Estado / Promoción</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-inventario-admin">
+                <!-- Se llena dinámicamente desde JS -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+            <!-- VISTA 2: INVENTARIO / STOCK -->
+            <div id="vista-inventario" class="seccion-admin-panel oculto">
+                <h2>Control de Inventario y Productos</h2>
                 
+                <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
+                    <button id="btn-abrir-modal-prod" class="boton">+ Agregar Nuevo Producto</button>
+                </div>
+
                 <table class="tabla-admin">
                     <thead>
                         <tr>
-                            <th>Imagen</th>
-                            <th>ID</th>
-                            <th>Nombre</th>
+                            <th>#</th>
+                            <th>Producto</th>
                             <th>Categoría</th>
-                            <th>Precio Base</th>
-                            <th>Stock</th>
-                            <th>Estado / Promoción</th>
+                            <th>Precio</th>
+                            <th>Stock (Quedan)</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody id="tabla-inventario-admin">
-                        <!-- Carga dinámica vía JS -->
+                    <tbody id="tabla-inventario-body">
+                        <!-- Se llena dinámicamente -->
                     </tbody>
                 </table>
             </div>
 
-        </div>
+            <!-- VISTA 3: PROMOCIONES Y OFERTAS -->
+            <div id="vista-promociones" class="seccion-admin-panel oculto">
+                <h2>Códigos de Promoción y Descuentos</h2>
+
+                <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
+                    <button id="btn-abrir-modal-promo" class="boton">+ Agregar Nueva Promoción</button>
+                </div>
+
+                <table class="tabla-admin">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Descuento</th>
+                            <th>Aplica a</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-promociones-body">
+                        <!-- Se llena dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- VISTA 4: PEDIDOS (CONFIRMAR ENVÍO) -->
+            <div id="vista-pedidos" class="seccion-admin-panel oculto">
+                <h2>Control de Envíos de Pedidos</h2>
+                <table class="tabla-admin">
+                    <thead>
+                        <tr>
+                            <th>Código Pedido</th>
+                            <th>Cliente</th>
+                            <th>Total</th>
+                            <th>Fecha</th>
+                            <th>Estatus</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#PED-001</td>
+                            <td>María Flores</td>
+                            <td>$1,250 MXN</td>
+                            <td>22/09/2026</td>
+                            <td><span class="badge-stock badge-enviado" id="status-ped-1">Enviado</span></td>
+                            <td><button class="boton" onclick="document.getElementById('status-ped-1').textContent='Enviado';">Confirmado</button></td>
+                        </tr>
+                        <tr>
+                            <td>#PED-002</td>
+                            <td>Carlos Ruiz</td>
+                            <td>$890 MXN</td>
+                            <td>22/09/2026</td>
+                            <td><span class="badge-stock badge-ultimo" id="status-ped-2">En preparación</span></td>
+                            <td><button class="boton" onclick="document.getElementById('status-ped-2').textContent='Enviado'; document.getElementById('status-ped-2').className='badge-stock badge-enviado';">Marcar como Enviado</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+
     </main>
 
-    <footer class="footer-principal">
-        <div class="footer-bottom">
-            <p>&copy; 2026 Muebles Kolosos - Panel de Control Interno</p>
+    <!-- MODAL EMERGENTE PARA AGREGAR NUEVO PRODUCTO -->
+    <div id="modal-nuevo-producto" class="overlay-sidebar oculto" style="display: flex; justify-content: center; align-items: center; pointer-events: auto;">
+        <div style="background: #fff; padding: 25px; border-radius: 8px; width: 90%; max-width: 420px; color: #1f2937; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+            <h3 style="margin-bottom: 15px;">Agregar Nuevo Mueble</h3>
+            <form id="form-crear-producto">
+                <div style="margin-bottom: 10px;">
+                    <label style="display:block; font-size: 0.85rem; font-weight:600; margin-bottom: 4px;">Nombre del Producto:</label>
+                    <input type="text" id="nuevo-prod-nombre" placeholder="Ej: Poltrona Ergonómica" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <label style="display:block; font-size: 0.85rem; font-weight:600; margin-bottom: 4px;">Categoría:</label>
+                    <select id="nuevo-prod-categoria" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                        <option value="sofas">Sofás y Sillones</option>
+                        <option value="mesas">Mesas y Comedores</option>
+                        <option value="camas">Camas y Dormitorio</option>
+                    </select>
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <label style="display:block; font-size: 0.85rem; font-weight:600; margin-bottom: 4px;">Precio (Ej: $350.000):</label>
+                    <input type="text" id="nuevo-prod-precio" placeholder="$350.000" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <label style="display:block; font-size: 0.85rem; font-weight:600; margin-bottom: 4px;">Ruta de Imagen:</label>
+                    <input type="text" id="nuevo-prod-imagen" placeholder="imagenes/sofa.png" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label style="display:block; font-size: 0.85rem; font-weight:600; margin-bottom: 4px;">Cantidad en Stock:</label>
+                    <input type="number" id="nuevo-prod-stock" min="0" value="5" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+                <div style="display:flex; gap:10px;">
+                    <button type="submit" class="boton" style="flex:1;">Guardar y Publicar</button>
+                    <button type="button" id="btn-cerrar-modal-prod" class="boton" style="background:#6b7280;">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL EMERGENTE PARA EDITAR PRODUCTO -->
+    <div id="modal-editar-producto" class="overlay-sidebar oculto" style="display: flex; justify-content: center; align-items: center; pointer-events: auto;">
+        <div style="background: #fff; padding: 25px; border-radius: 8px; width: 90%; max-width: 420px; color: #1f2937; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+            <h3 style="margin-bottom: 15px;">Editar Producto</h3>
+            <form id="form-editar-producto">
+                <input type="hidden" id="edit-prod-id">
+                <div style="margin-bottom: 10px;">
+                    <label style="display:block; font-size: 0.85rem; font-weight:600; margin-bottom: 4px;">Nombre del Producto:</label>
+                    <input type="text" id="edit-prod-nombre" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <label style="display:block; font-size: 0.85rem; font-weight:600; margin-bottom: 4px;">Categoría:</label>
+                    <select id="edit-prod-categoria" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                        <option value="sofas">Sofás y Sillones</option>
+                        <option value="mesas">Mesas y Comedores</option>
+                        <option value="camas">Camas y Dormitorio</option>
+                    </select>
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <label style="display:block; font-size: 0.85rem; font-weight:600; margin-bottom: 4px;">Precio (Ej: $350.000):</label>
+                    <input type="text" id="edit-prod-precio" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <label style="display:block; font-size: 0.85rem; font-weight:600; margin-bottom: 4px;">Ruta de Imagen:</label>
+                    <input type="text" id="edit-prod-imagen" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label style="display:block; font-size: 0.85rem; font-weight:600; margin-bottom: 4px;">Cantidad en Stock:</label>
+                    <input type="number" id="edit-prod-stock" min="0" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+                <div style="display:flex; gap:10px;">
+                    <button type="submit" class="boton" style="flex:1; background-color: #2563eb;">Actualizar Producto</button>
+                    <button type="button" id="btn-cerrar-modal-edit" class="boton" style="background:#6b7280;">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL EMERGENTE PARA AGREGAR NUEVA PROMOCIÓN -->
+    <div id="modal-nueva-promocion" class="overlay-sidebar oculto" style="display: flex; justify-content: center; align-items: center; pointer-events: auto;">
+        <div style="background: #fff; padding: 25px; border-radius: 8px; width: 90%; max-width: 420px; color: #1f2937; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+            <h3 style="margin-bottom: 15px;">Crear Nueva Promoción</h3>
+            <form id="form-crear-promocion">
+                <div style="margin-bottom: 10px;">
+                    <label style="display:block; font-size: 0.85rem; font-weight:600; margin-bottom: 4px;">Código Promocional:</label>
+                    <input type="text" id="nueva-promo-codigo" placeholder="Ej: VERANO2026" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; text-transform: uppercase;">
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <label style="display:block; font-size: 0.85rem; font-weight:600; margin-bottom: 4px;">Descuento:</label>
+                    <input type="text" id="nueva-promo-descuento" placeholder="Ej: 20% OFF o $500 OFF" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <label style="display:block; font-size: 0.85rem; font-weight:600; margin-bottom: 4px;">Aplica a:</label>
+                    <input type="text" id="nueva-promo-aplica" placeholder="Ej: Todo el catálogo, Sofás, etc." required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label style="display:block; font-size: 0.85rem; font-weight:600; margin-bottom: 4px;">Estado:</label>
+                    <select id="nueva-promo-estado" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                        <option value="Activo">Activo</option>
+                        <option value="Inactivo">Inactivo</option>
+                    </select>
+                </div>
+                <div style="display:flex; gap:10px;">
+                    <button type="submit" class="boton" style="flex:1;">Guardar Promoción</button>
+                    <button type="button" id="btn-cerrar-modal-promo" class="boton" style="background:#6b7280;">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer-kolosos">
+        <div class="footer-inferior">
+            <p>© 2026 Kolosos - Panel Administrativo Simulado</p>
         </div>
     </footer>
 
-    <!-- LOGICA JS -->
+    <!-- Carga del JS de Productos y Script del Admin -->
     <script src="productos.js"></script>
     <script>
-        function renderizarInventarioAdmin() {
-            const productos = obtenerProductos();
-            const tabla = document.getElementById("tabla-inventario-admin");
+        document.addEventListener("DOMContentLoaded", () => {
+            const boxLoginAdmin = document.getElementById("box-login-admin");
+            const panelAdminContenido = document.getElementById("panel-admin-contenido");
+            const formLoginAdmin = document.getElementById("form-login-admin");
+            const btnLogoutAdmin = document.getElementById("btn-logout-admin");
             
-            if (!tabla) return;
-            tabla.innerHTML = "";
+            const btnAbrirSidebar = document.getElementById("btn-abrir-sidebar");
+            const btnCerrarSidebar = document.getElementById("btn-cerrar-sidebar");
+            const sidebarMenu = document.getElementById("sidebar-menu");
+            const overlaySidebar = document.getElementById("overlay-sidebar");
+            const sidebarLinks = document.querySelectorAll(".sidebar-link");
 
-            let conteoPromos = 0;
+            const vistaMetricas = document.getElementById("vista-metricas");
+            const vistaInventario = document.getElementById("vista-inventario");
+            const vistaPromociones = document.getElementById("vista-promociones");
+            const vistaPedidos = document.getElementById("vista-pedidos");
+            const tituloSeccion = document.getElementById("titulo-seccion-actual");
 
-            productos.forEach(prod => {
-                const tr = document.createElement("tr");
+            const tbodyInventario = document.getElementById("tabla-inventario-body");
+            const modalNuevoProd = document.getElementById("modal-nuevo-producto");
+            const btnAbrirModalProd = document.getElementById("btn-abrir-modal-prod");
+            const btnCerrarModalProd = document.getElementById("btn-cerrar-modal-prod");
+            const formCrearProd = document.getElementById("form-crear-producto");
 
-                // Badge de stock
-                let badgeStock = `<span class="badge-stock badge-disponible">${prod.stock} disponibles</span>`;
-                if (prod.stock === 0) {
-                    badgeStock = `<span class="badge-stock badge-agotado">Agotado</span>`;
-                } else if (prod.stock <= 2) {
-                    badgeStock = `<span class="badge-stock badge-ultimo">¡Últimas ${prod.stock}!</span>`;
-                }
+            const modalEditProd = document.getElementById("modal-editar-producto");
+            const btnCerrarModalEdit = document.getElementById("btn-cerrar-modal-edit");
+            const formEditProd = document.getElementById("form-editar-producto");
+            const cantProductosMetricas = document.getElementById("cant-productos-metricas");
 
-                // Detección de ofertas/promociones
-                const tienePromo = prod.enOferta || prod.categoria === "sofas" || prod.stock === 1;
-                if (tienePromo) conteoPromos++;
+            // Elementos de Promociones
+            const tbodyPromociones = document.getElementById("tabla-promociones-body");
+            const modalNuevaPromo = document.getElementById("modal-nueva-promocion");
+            const btnAbrirModalPromo = document.getElementById("btn-abrir-modal-promo");
+            const btnCerrarModalPromo = document.getElementById("btn-cerrar-modal-promo");
+            const formCrearPromo = document.getElementById("form-crear-promocion");
+            const cantPromosMetricas = document.getElementById("cant-promos-metricas");
 
-                const badgePromo = tienePromo 
-                    ? `<span class="badge-oferta">🔥 En Oferta (${prod.categoria.toUpperCase()})</span>`
-                    : `<span class="texto-regular">Precio Regular</span>`;
+            // Datos iniciales por defecto para promociones
+            const promocionesIniciales = [
+                { id: "promo-1", codigo: "KOLOSOS20", descuento: "20% OFF", aplica: "Todo el catálogo", estado: "Activo" },
+                { id: "promo-2", codigo: "OFERTAFALL", descuento: "15% OFF", aplica: "Productos en oferta", estado: "Activo" }
+            ];
 
-                tr.innerHTML = `
-                    <td>
-                        <img src="${prod.imagen}" alt="${prod.nombre}" class="img-tabla-admin">
-                    </td>
-                    <td><strong>${prod.id}</strong></td>
-                    <td>${prod.nombre}</td>
-                    <td class="texto-categoria">${prod.categoria}</td>
-                    <td>${prod.precio}</td>
-                    <td>${badgeStock}</td>
-                    <td>${badgePromo}</td>
-                `;
+            function abrirMenu() {
+                sidebarMenu.classList.add("activo");
+                overlaySidebar.classList.add("activo");
+            }
 
-                tabla.appendChild(tr);
+            function cerrarMenu() {
+                sidebarMenu.classList.remove("activo");
+                overlaySidebar.classList.remove("activo");
+            }
+
+            if (btnAbrirSidebar) btnAbrirSidebar.addEventListener("click", abrirMenu);
+            if (btnCerrarSidebar) btnCerrarSidebar.addEventListener("click", cerrarMenu);
+            if (overlaySidebar) overlaySidebar.addEventListener("click", cerrarMenu);
+
+            sidebarLinks.forEach(link => {
+                link.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    const seccion = link.getAttribute("data-seccion");
+
+                    vistaMetricas.classList.add("oculto");
+                    vistaInventario.classList.add("oculto");
+                    vistaPromociones.classList.add("oculto");
+                    vistaPedidos.classList.add("oculto");
+
+                    if (seccion === "metricas") {
+                        vistaMetricas.classList.remove("oculto");
+                        tituloSeccion.textContent = "Panel de Control Operativo";
+                    } else if (seccion === "inventario") {
+                        vistaInventario.classList.remove("oculto");
+                        tituloSeccion.textContent = "Gestión de Productos e Inventario";
+                    } else if (seccion === "promociones") {
+                        vistaPromociones.classList.remove("oculto");
+                        tituloSeccion.textContent = "Gestión de Promociones y Ofertas";
+                    } else if (seccion === "pedidos") {
+                        vistaPedidos.classList.remove("oculto");
+                        tituloSeccion.textContent = "Control de Pedidos y Envíos";
+                    }
+
+                    cerrarMenu();
+                });
             });
 
-            document.getElementById("cant-productos").textContent = productos.length;
-            document.getElementById("cant-promos").textContent = conteoPromos;
-        }
+            function verificarSesionAdmin() {
+                const adminActivo = localStorage.getItem("admin_sesion_activa");
+                
+                if (adminActivo === "true") {
+                    boxLoginAdmin.classList.add("oculto");
+                    panelAdminContenido.classList.remove("oculto");
+                    cargarTablaInventario();
+                    cargarTablaPromociones();
+                } else {
+                    panelAdminContenido.classList.add("oculto");
+                    boxLoginAdmin.classList.remove("oculto");
+                }
+            }
 
-        document.addEventListener("DOMContentLoaded", () => {
-            renderizarInventarioAdmin();
+            function obtenerListaProductos() {
+                if (typeof obtenerProductos === "function") {
+                    const prods = obtenerProductos();
+                    if (prods && prods.length > 0) return prods;
+                }
+                const guardados = localStorage.getItem("productos_kolosos");
+                return guardados ? JSON.parse(guardados) : [];
+            }
+
+            function cargarTablaInventario() {
+                const productos = obtenerListaProductos();
+
+                if (!tbodyInventario) return;
+                tbodyInventario.innerHTML = "";
+
+                if (cantProductosMetricas) {
+                    cantProductosMetricas.textContent = productos.length;
+                }
+
+                if (productos.length === 0) {
+                    tbodyInventario.innerHTML = `<tr><td colspan="7" style="text-align:center; padding: 20px;">No hay productos en el inventario.</td></tr>`;
+                    return;
+                }
+
+                productos.forEach((p, index) => {
+                    const stockActual = parseInt(p.stock) ?? 0;
+
+                    let badgeClass = "badge-disponible";
+                    let estadoTexto = "Disponible";
+
+                    if (stockActual === 0) {
+                        badgeClass = "badge-agotado";
+                        estadoTexto = "Agotado";
+                    } else if (stockActual === 1) {
+                        badgeClass = "badge-ultimo";
+                        estadoTexto = "¡Último en Stock!";
+                    }
+
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                        <td>${index + 1}</td>
+                        <td><strong>${p.nombre || 'Mueble'}</strong></td>
+                        <td>${p.categoria || 'Sin Categoría'}</td>
+                        <td>${p.precio || '$0'}</td>
+                        <td><strong>${stockActual}</strong></td>
+                        <td><span class="badge-stock ${badgeClass}">${estadoTexto}</span></td>
+                        <td>
+                            <div style="display: flex; gap: 6px;">
+                                <button class="btn-editar-prod" data-id="${p.id}" style="background-color: #2563eb; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 0.85rem; font-weight: bold;">✏️ Editar</button>
+                                <button class="btn-eliminar-prod" data-id="${p.id}" data-nombre="${p.nombre}" style="background-color: #ef4444; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 0.85rem; font-weight: bold;">🗑️ Eliminar</button>
+                            </div>
+                        </td>
+                    `;
+                    tbodyInventario.appendChild(tr);
+                });
+
+                document.querySelectorAll(".btn-editar-prod").forEach(btn => {
+                    btn.addEventListener("click", () => {
+                        const id = btn.getAttribute("data-id");
+                        abrirModalEdicion(id);
+                    });
+                });
+
+                document.querySelectorAll(".btn-eliminar-prod").forEach(btn => {
+                    btn.addEventListener("click", () => {
+                        const id = btn.getAttribute("data-id");
+                        const nombre = btn.getAttribute("data-nombre");
+                        
+                        const confirmacion = confirm(`¿Estás seguro de que deseas eliminar el producto "${nombre}"?\nEsta acción no se puede deshacer.`);
+                        
+                        if (confirmacion) {
+                            eliminarProductoPorId(id);
+                        }
+                    });
+                });
+            }
+
+            function abrirModalEdicion(id) {
+                const productos = obtenerListaProductos();
+                const p = productos.find(prod => prod.id == id);
+                if (!p) return;
+
+                document.getElementById("edit-prod-id").value = p.id;
+                document.getElementById("edit-prod-nombre").value = p.nombre || "";
+                document.getElementById("edit-prod-categoria").value = p.categoria || "sofas";
+                document.getElementById("edit-prod-precio").value = p.precio || "";
+                document.getElementById("edit-prod-imagen").value = p.imagen || "";
+                document.getElementById("edit-prod-stock").value = p.stock ?? 0;
+
+                modalEditProd.classList.remove("oculto");
+            }
+
+            if (btnCerrarModalEdit) {
+                btnCerrarModalEdit.addEventListener("click", () => {
+                    modalEditProd.classList.add("oculto");
+                });
+            }
+
+            if (formEditProd) {
+                formEditProd.addEventListener("submit", (e) => {
+                    e.preventDefault();
+                    const id = document.getElementById("edit-prod-id").value;
+                    let productos = obtenerListaProductos();
+
+                    const index = productos.findIndex(p => p.id == id);
+                    if (index !== -1) {
+                        const precioTexto = document.getElementById("edit-prod-precio").value;
+                        const precioNumerico = parseInt(precioTexto.replace(/\D/g, "")) || 0;
+
+                        productos[index].nombre = document.getElementById("edit-prod-nombre").value;
+                        productos[index].categoria = document.getElementById("edit-prod-categoria").value;
+                        productos[index].precio = precioTexto;
+                        productos[index].precioNum = precioNumerico;
+                        productos[index].imagen = document.getElementById("edit-prod-imagen").value;
+                        productos[index].stock = parseInt(document.getElementById("edit-prod-stock").value) || 0;
+
+                        localStorage.setItem("productos_kolosos", JSON.stringify(productos));
+                        cargarTablaInventario();
+                        modalEditProd.classList.add("oculto");
+                        alert("¡Producto actualizado con éxito!");
+                    }
+                });
+            }
+
+            function eliminarProductoPorId(id) {
+                let productos = obtenerListaProductos();
+                productos = productos.filter(p => p.id != id);
+                localStorage.setItem("productos_kolosos", JSON.stringify(productos));
+                cargarTablaInventario();
+            }
+
+            if (btnAbrirModalProd) {
+                btnAbrirModalProd.addEventListener("click", () => {
+                    modalNuevoProd.classList.remove("oculto");
+                });
+            }
+
+            if (btnCerrarModalProd) {
+                btnCerrarModalProd.addEventListener("click", () => {
+                    modalNuevoProd.classList.add("oculto");
+                });
+            }
+
+            if (formCrearProd) {
+                formCrearProd.addEventListener("submit", (e) => {
+                    e.preventDefault();
+
+                    const precioTexto = document.getElementById("nuevo-prod-precio").value;
+                    const precioNumerico = parseInt(precioTexto.replace(/\D/g, "")) || 0;
+
+                    const nuevoMueble = {
+                        id: "mueble-" + Date.now(),
+                        nombre: document.getElementById("nuevo-prod-nombre").value,
+                        categoria: document.getElementById("nuevo-prod-categoria").value,
+                        precio: precioTexto,
+                        precioNum: precioNumerico,
+                        imagen: document.getElementById("nuevo-prod-imagen").value,
+                        stock: parseInt(document.getElementById("nuevo-prod-stock").value)
+                    };
+
+                    let productos = obtenerListaProductos();
+                    productos.push(nuevoMueble);
+                    localStorage.setItem("productos_kolosos", JSON.stringify(productos));
+
+                    cargarTablaInventario();
+
+                    formCrearProd.reset();
+                    modalNuevoProd.classList.add("oculto");
+                    alert("¡Producto guardado exitosamente!");
+                });
+            }
+
+            // --- LÓGICA PARA GESTIÓN DE PROMOCIONES ---
+
+            function obtenerListaPromociones() {
+                const guardadas = localStorage.getItem("promociones_kolosos");
+                if (guardadas) {
+                    return JSON.parse(guardadas);
+                } else {
+                    localStorage.setItem("promociones_kolosos", JSON.stringify(promocionesIniciales));
+                    return promocionesIniciales;
+                }
+            }
+
+            function cargarTablaPromociones() {
+                const promociones = obtenerListaPromociones();
+
+                if (!tbodyPromociones) return;
+                tbodyPromociones.innerHTML = "";
+
+                if (cantPromosMetricas) {
+                    cantPromosMetricas.textContent = promociones.filter(p => p.estado === "Activo").length;
+                }
+
+                if (promociones.length === 0) {
+                    tbodyPromociones.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 20px;">No hay promociones registradas.</td></tr>`;
+                    return;
+                }
+
+              
+                promociones.forEach((promo) => {
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                        <td><strong>${promo.codigo}</strong></td>
+                        <td>${promo.descuento}</td>
+                        <td>${promo.aplica}</td>
+                        <td><span class="badge-stock ${promo.estado === 'Activo' ? 'badge-disponible' : 'badge-agotado'}">${promo.estado}</span></td>
+                        <td>
+                            <button class="btn-eliminar-promo" data-id="${promo.id}" data-codigo="${promo.codigo}" style="background-color: #ef4444; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 0.85rem; font-weight: bold;">🗑️ Eliminar</button>
+                        </td>
+                    `;
+                    tbodyPromociones.appendChild(tr);
+                });
+
+                document.querySelectorAll(".btn-eliminar-promo").forEach(btn => {
+                    btn.addEventListener("click", () => {
+                        const id = btn.getAttribute("data-id");
+                        const codigo = btn.getAttribute("data-codigo");
+
+                        if (confirm(`¿Estás seguro de eliminar la promoción "${codigo}"?`)) {
+                            eliminarPromocionPorId(id);
+                        }
+                    });
+                });
+            }
+
+            function eliminarPromocionPorId(id) {
+                let promociones = obtenerListaPromociones();
+                promociones = promociones.filter(p => p.id != id);
+                localStorage.setItem("promociones_kolosos", JSON.stringify(promociones));
+                cargarTablaPromociones();
+            }
+
+            if (btnAbrirModalPromo) {
+                btnAbrirModalPromo.addEventListener("click", () => {
+                    modalNuevaPromo.classList.remove("oculto");
+                });
+            }
+
+            if (btnCerrarModalPromo) {
+                btnCerrarModalPromo.addEventListener("click", () => {
+                    modalNuevaPromo.classList.add("oculto");
+                });
+            }
+
+            if (formCrearPromo) {
+                formCrearPromo.addEventListener("submit", (e) => {
+                    e.preventDefault();
+
+                    const nuevaPromo = {
+                        id: "promo-" + Date.now(),
+                        codigo: document.getElementById("nueva-promo-codigo").value.toUpperCase().trim(),
+                        descuento: document.getElementById("nueva-promo-descuento").value.trim(),
+                        aplica: document.getElementById("nueva-promo-aplica").value.trim(),
+                        estado: document.getElementById("nueva-promo-estado").value
+                    };
+
+                    let promociones = obtenerListaPromociones();
+                    promociones.push(nuevaPromo);
+                    localStorage.setItem("promociones_kolosos", JSON.stringify(promociones));
+
+                    cargarTablaPromociones();
+
+                    formCrearPromo.reset();
+                    modalNuevaPromo.classList.add("oculto");
+                    alert("¡Promoción agregada exitosamente!");
+                });
+            }
+
+            verificarSesionAdmin();
+
+            if (formLoginAdmin) {
+                formLoginAdmin.addEventListener("submit", (e) => {
+                    e.preventDefault();
+                    localStorage.setItem("admin_sesion_activa", "true");
+                    verificarSesionAdmin();
+                });
+            }
+
+            if (btnLogoutAdmin) {
+                btnLogoutAdmin.addEventListener("click", () => {
+                    localStorage.removeItem("admin_sesion_activa");
+                    verificarSesionAdmin();
+                });
+            }
         });
     </script>
 </body>

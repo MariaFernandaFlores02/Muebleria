@@ -45,3 +45,83 @@ function EliminarProducto(idProducto) {
     productos = productos.filter(prod => prod.id !== idProducto);
     guardarProductos(productos);
 }
+// ==========================================
+// RENDERIZADO DE TABLA DE MÉTRICAS (CON ACTUALIZACIÓN EN TIEMPO REAL)
+// ==========================================
+function cargarTablaMetricasConPromociones() {
+    const tbodyMetricas = document.getElementById("tabla-inventario-admin");
+    if (!tbodyMetricas) return;
+
+    // 1. Obtener datos más recientes
+    const productos = typeof obtenerProductos === "function" ? obtenerProductos() : [];
+
+    let promociones = [];
+    try {
+        const promocionesGuardadas = localStorage.getItem("promociones_kolosos");
+        promociones = promocionesGuardadas ? JSON.parse(promocionesGuardadas) : [];
+    } catch (e) {
+        promociones = [];
+    }
+
+    tbodyMetricas.innerHTML = "";
+
+    if (!productos || productos.length === 0) {
+        tbodyMetricas.innerHTML = `<tr><td colspan="7" style="text-align:center; padding: 20px; color: #666;">No hay productos registrados.</td></tr>`;
+        return;
+    }
+
+    // 2. Renderizar cada fila
+    productos.forEach(prod => {
+        if (!prod) return;
+
+        const categoriaProd = String(prod.categoria || "").toLowerCase().trim();
+
+        // Buscar si existe oferta activa que aplique
+        const promo = promociones.find(p => {
+            if (!p || p.estado !== "Activo") return false;
+            const aplicaA = String(p.aplica || "").toLowerCase().trim();
+            return aplicaA.includes("todo") || aplicaA.includes(categoriaProd) || (categoriaProd && categoriaProd.includes(aplicaA));
+        });
+
+        const estadoPromoHTML = promo 
+            ? `<span style="background-color: #10b981; color: white; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 0.85rem;">🔥 ${promo.descuento || 'Oferta'} (${promo.codigo || 'PROMO'})</span>`
+            : `<span style="background-color: #9ca3af; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.85rem;">Sin Oferta</span>`;
+
+        const tr = document.createElement("tr");
+        tr.style.borderBottom = "1px solid #e5e7eb";
+        tr.style.color = "#1f2937";
+
+        tr.innerHTML = `
+            <td style="padding: 12px; text-align: center;">
+                <img src="${prod.imagen || 'https://via.placeholder.com/40'}" alt="${prod.nombre || ''}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 6px;" onerror="this.src='https://via.placeholder.com/40'">
+            </td>
+            <td style="padding: 12px; font-weight: bold; color: #2563eb; text-align: center;">${prod.id || '-'}</td>
+            <td style="padding: 12px; font-weight: 600;">${prod.nombre || 'Sin Nombre'}</td>
+            <td style="padding: 12px;"><span style="text-transform: capitalize; background: #e0e7ff; color: #3730a3; padding: 2px 8px; border-radius: 4px; font-size: 0.85rem;">${prod.categoria || 'General'}</span></td>
+            <td style="padding: 12px; font-weight: bold;">${prod.precio || '$0'}</td>
+            <td style="padding: 12px; text-align: center;"><strong>${prod.stock ?? 0}</strong></td>
+            <td style="padding: 12px; text-align: center;">${estadoPromoHTML}</td>
+        `;
+        tbodyMetricas.appendChild(tr);
+    });
+}
+
+// Función auxiliar para forzar la actualización en cualquier momento
+function notificarCambioEnDatos() {
+    cargarTablaMetricasConPromociones();
+    window.dispatchEvent(new Event("datosActualizados"));
+}
+
+// 1. Cargar al abrir el documento
+document.addEventListener("DOMContentLoaded", cargarTablaMetricasConPromociones);
+
+// 2. Escuchar cuando cambies de pestaña en el menú (Métricas, Productos, Promociones, Pedidos)
+document.addEventListener("click", (e) => {
+    if (e.target.closest(".sidebar a, .menu-item, [data-target], [data-seccion]")) {
+        setTimeout(cargarTablaMetricasConPromociones, 50);
+    }
+});
+
+// 3. Escuchar cambios de LocalStorage (por si editas desde otra pestaña o módulo)
+window.addEventListener("storage", cargarTablaMetricasConPromociones);
+window.addEventListener("datosActualizados", cargarTablaMetricasConPromociones);

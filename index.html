@@ -19,7 +19,7 @@
 
             <div class="contenido-encima">
                 <div class="logo">
-                    <img src="imagenes/logo.png" alt="Logo Muebles Kolosos">
+                     <img src="imagenes/logo.png" alt="Logo Muebles Kolosos">
                     <span>Muebles Kolosos</span>
                 </div>
                 <p>Regístrate con tu correo para acceder al sitio y recibir promociones exclusivas.</p>
@@ -36,23 +36,25 @@
     <div id="pantalla-principal" class="oculto">
         
         <!-- BARRA SUPERIOR (HEADER) -->
-        <header class="header">
-            <div class="logo">
-                <img src="imagenes/logo.png" alt="Logo Muebles Kolosos">
-                <span>Muebles Kolosos</span>
+ <header class="header">
+    <div class="logo">
+        <img src="imagenes/logo.png" alt="Logo Muebles Kolosos">
+        <span>Muebles Kolosos</span>
+    </div>
+    <nav class="menu">
+        <a href="carrito.html" class="carrito-link" aria-label="Ver carrito">
+            <div class="carrito">
+                <img src="imagenes/carrito.avif" alt="Carrito">
+                <span id="contador-carrito" class="contador-badge">0</span>
             </div>
-
-            <nav class="menu">
-                <div class="carrito">
-                    <button><img src="imagenes/carrito.avif" alt="Carrito"></button>
-                </div>
-                <a href="index.html" class="activo">Inicio</a>
-                <a href="catalogo.html">Catálogo</a>
-                <a href="nosotros.html">Nosotros</a>
-                <a href="contacto.html">Contacto</a>
-                <a href="perfil.html">Perfil</a>
-            </nav>
-        </header>
+        </a>
+        <a href="index.html">Inicio</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="perfil.html">Mi Perfil</a>
+    </nav>
+</header>
 
         <!-- CONTENIDO PRINCIPAL -->
         <main>
@@ -180,6 +182,7 @@
             });
         });
     </script>
+    <script src="global.js"></script>
 </body>
 
 </html>
