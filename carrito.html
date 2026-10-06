@@ -1,218 +1,268 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito de Compras - Muebles Kolosos</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carrito de Compras - Muebles Kolosos</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- ENCABEZADO Y NAVEGACIÓN -->
-  <header class="header">
-    <div class="logo">
-        <img src="imagenes/logo.png" alt="Logo Muebles Kolosos">
-        <span>Muebles Kolosos</span>
-    </div>
-    <nav class="menu">
-        <a href="carrito.html" class="carrito-link" aria-label="Ver carrito">
-            <div class="carrito">
-                <img src="imagenes/carrito.avif" alt="Carrito">
-                <span id="contador-carrito" class="contador-badge">0</span>
-            </div>
-        </a>
-        <a href="index.html">Inicio</a>
-        <a href="catalogo.html">Catálogo</a>
-        <a href="nosotros.html">Nosotros</a>
-        <a href="contacto.html">Contacto</a>
-        <a href="perfil.html">Mi Perfil</a>
-    </nav>
+<!-- ENCABEZADO Y NAVEGACIÓN -->
+<header class="header">
+<div class="logo">
+<img src="imagenes/logo.png" alt="Logo Muebles Kolosos">
+<span>Muebles Kolosos</span>
+</div>
+<nav class="menu">
+<a href="carrito.html" class="carrito-link" aria-label="Ver carrito">
+<div class="carrito">
+<img src="imagenes/carrito.avif" alt="Carrito">
+<span id="contador-carrito" class="contador-badge">0</span>
+</div>
+</a>
+<a href="index.html">Inicio</a>
+<a href="catalogo.html">Catálogo</a>
+<a href="nosotros.html">Nosotros</a>
+<a href="contacto.html">Contacto</a>
+<a href="perfil.html">Mi Perfil</a>
+</nav>
 </header>
+<!-- CONTENIDO PRINCIPAL DEL CARRITO -->
+<main class="contenedor-seccion">
+<h1 class="titulo-carrito">Carrito</h1>
+<div class="layout-carrito">
+<!-- COLUMNA IZQUIERDA: LISTA DE PRODUCTOS -->
+<div class="columna-productos-carrito" id="lista-carrito-productos">
+<!-- Se llena dinámicamente con JS -->
+</div>
+<!-- COLUMNA DERECHA: RESUMEN DE COMPRA -->
+<div class="columna-resumen-carrito">
+<div class="tarjeta-resumen-compra">
+<h3>Resumen</h3>
+<div class="fila-resumen">
+<span>Subtotal</span>
+<strong id="monto-subtotal">$0 MXN</strong>
+</div>
+<div class="fila-resumen fila-descuento" id="contenedor-descuento" style="display: none;">
+<span>Descuento <span id="label-cupon-aplicado"></span></span>
+<strong id="monto-descuento">-$0 MXN</strong>
+</div>
+<div class="fila-resumen fila-total">
+<span>Total</span>
+<strong id="monto-total">$0 MXN</strong>
+</div>
+<!-- DESPLEGABLE DE PROMOCIONES PARA LOS PRODUCTOS DEL CARRITO -->
+<div class="box-cupon-descuento">
+<select id="input-cupon" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.9rem;">
+<option value="">Seleccionar promoción...</option>
+</select>
+<button id="btn-aplicar-cupon" onclick="aplicarCuponDescuento()">Aplicar</button>
+</div>
+<button class="btn-ir-pagar" id="btn-ir-a-pagar">Ir a pagar</button>
 
-    <!-- CONTENIDO PRINCIPAL DEL CARRITO -->
-    <main class="contenedor-seccion">
-        <h1 class="titulo-carrito">Carrito</h1>
+<!-- ENLACE TÉRMINOS Y CONDICIONES DEBAJO DEL BOTÓN DE PAGAR -->
+<div style="text-align: center; margin-top: 12px;">
+<a href="terminos.html" target="_blank" style="color: #666; font-size: 0.85rem; text-decoration: underline;">Términos y Condiciones</a>
+</div>
 
-        <div class="layout-carrito">
-            <!-- COLUMNA IZQUIERDA: LISTA DE PRODUCTOS -->
-            <div class="columna-productos-carrito" id="lista-carrito-productos">
-                <!-- Se llena dinámicamente con JS -->
-            </div>
+</div>
+</div>
+</div>
+</main>
+<!-- NOTIFICACIÓN TIPO TOAST AL APLICAR CUPÓN -->
+<div id="toast-descuento" class="toast-notificacion">¡Descuento aplicado!</div>
+<!-- PIE DE PÁGINA -->
+<footer class="footer-principal">
+<div class="footer-contenido">
+<div class="footer-seccion">
+<h4>Muebles Kolosos</h4>
+<p>Muebles de alta calidad para darle a tu hogar el estilo y confort que merece.</p>
+</div>
+<div class="footer-seccion">
+<h4>Enlaces</h4>
+<ul>
+<li><a href="catalogo.html">Catálogo</a></li>
+<li><a href="nosotros.html">Nosotros</a></li>
+<li><a href="contacto.html">Contacto</a></li>
+</ul>
+</div>
+<div class="footer-seccion">
+<h4>Síguenos</h4>
+<p>Redes Sociales</p>
+</div>
+</div>
+<div class="footer-bottom">
+<p>&copy; 2026 Muebles Kolosos - Todos los derechos reservados.</p>
+</div>
+</footer>
+<!-- LÓGICA JS -->
+<script src="productos.js"></script>
+<script>
+let descuentoPorcentaje = 0;
+let codigoAplicado = "";
 
-            <!-- COLUMNA DERECHA: RESUMEN DE COMPRA -->
-            <div class="columna-resumen-carrito">
-                <div class="tarjeta-resumen-compra">
-                    <h3>Resumen</h3>
-                    
-                    <div class="fila-resumen">
-                        <span>Subtotal</span>
-                        <strong id="monto-subtotal">$0 MXN</strong>
-                    </div>
+function cargarOpcionesPromociones(carrito) {
+const select = document.getElementById("input-cupon");
+if (!select) return;
 
-                    <div class="fila-resumen fila-descuento" id="contenedor-descuento" style="display: none;">
-                        <span>Descuento <span id="label-cupon-aplicado"></span></span>
-                        <strong id="monto-descuento">-$0 MXN</strong>
-                    </div>
+select.innerHTML = '<option value="">Seleccionar promoción...</option>';
 
-                    <div class="fila-resumen fila-total">
-                        <span>Total</span>
-                        <strong id="monto-total">$0 MXN</strong>
-                    </div>
+if (!carrito || carrito.length === 0) return;
 
-                    <!-- CAMPO DE CÓDIGO DE DESCUENTO -->
-                    <div class="box-cupon-descuento">
-                        <input type="text" id="input-cupon" placeholder="Código descuento">
-                        <button id="btn-aplicar-cupon" onclick="aplicarCuponDescuento()">Aplicar</button>
-                    </div>
+let promociones = [];
+try {
+promociones = JSON.parse(localStorage.getItem("promociones_kolosos")) || [
+{ id: "promo-1", codigo: "KOLOSOS20", descuento: "20% OFF", aplica: "Todo el catálogo", estado: "Activo" },
+{ id: "promo-2", codigo: "OFERTAFALL", descuento: "15% OFF", aplica: "Productos en oferta", estado: "Activo" }
+];
+} catch (e) {
+promociones = [];
+}
 
-                    <button class="btn-ir-pagar" id="btn-ir-a-pagar">Ir a pagar</button>
-                </div>
-            </div>
-        </div>
-    </main>
+// Obtener categorías presentes en el carrito
+const categoriasCarrito = [...new Set(carrito.map(item => String(item.categoria || "").toLowerCase().trim()))];
 
-    <!-- NOTIFICACIÓN TIPO TOAST AL APLICAR CUPÓN -->
-    <div id="toast-descuento" class="toast-notificacion">¡Descuento aplicado!</div>
+// Filtrar promociones activas
+const promocionesValidas = promociones.filter(p => {
+if (!p || p.estado !== "Activo") return false;
+const aplicaA = String(p.aplica || "").toLowerCase().trim();
+return aplicaA.includes("todo") || categoriasCarrito.some(cat => cat && (aplicaA.includes(cat) || cat.includes(aplicaA)));
+});
 
-    <!-- PIE DE PÁGINA -->
-    <footer class="footer-principal">
-        <div class="footer-contenido">
-            <div class="footer-seccion">
-                <h4>Muebles Kolosos</h4>
-                <p>Muebles de alta calidad para darle a tu hogar el estilo y confort que merece.</p>
-            </div>
-            <div class="footer-seccion">
-                <h4>Enlaces</h4>
-                <ul>
-                    <li><a href="catalogo.html">Catálogo</a></li>
-                    <li><a href="nosotros.html">Nosotros</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
-                </ul>
-            </div>
-            <div class="footer-seccion">
-                <h4>Síguenos</h4>
-                <p>Redes Sociales</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Muebles Kolosos - Todos los derechos reservados.</p>
-        </div>
-    </footer>
+if (promocionesValidas.length === 0) {
+select.innerHTML = '<option value="">Sin promociones aplicables</option>';
+return;
+}
 
-    <!-- LOGICA JS -->
-    <script src="productos.js"></script>
-    <script>
-        let descuentoPorcentaje = 0;
-        let codigoAplicado = "";
+promocionesValidas.forEach(p => {
+const opt = document.createElement("option");
+opt.value = p.codigo;
 
-        function cargarCarritoVisual() {
-            const carrito = JSON.parse(localStorage.getItem("carrito_kolosos")) || [];
-            const contenedor = document.getElementById("lista-carrito-productos");
-            let subtotal = 0;
+let pct = 0.15;
+if (p.descuento.includes("20%")) pct = 0.20;
+else if (p.descuento.includes("50%")) pct = 0.50;
+else if (p.descuento.includes("10%")) pct = 0.10;
 
-            contenedor.innerHTML = "";
+opt.setAttribute("data-porcentaje", pct);
+opt.textContent = `${p.codigo} - ${p.descuento} (${p.aplica})`;
+select.appendChild(opt);
+});
+}
 
-            if (carrito.length === 0) {
-                contenedor.innerHTML = `<p style="background:white; padding:20px; border-radius:12px;">Tu carrito está vacío.</p>`;
-                actualizarMontos(0);
-                return;
-            }
+function cargarCarritoVisual() {
+const carrito = JSON.parse(localStorage.getItem("carrito_kolosos")) || [];
+const contenedor = document.getElementById("lista-carrito-productos");
+let subtotal = 0;
+contenedor.innerHTML = "";
 
-            carrito.forEach((item, index) => {
-                const itemSubtotal = item.precioNum * item.cantidad;
-                subtotal += itemSubtotal;
+if (carrito.length === 0) {
+contenedor.innerHTML = '<p style="background:white; padding:20px; border-radius: 12px;">Tu carrito está vacío.</p>';
+actualizarMontos(0);
+cargarOpcionesPromociones([]);
+return;
+}
 
-                const div = document.createElement("div");
-                div.className = "item-tarjeta-carrito";
-                div.innerHTML = `
-                    <img src="${item.imagen}" class="img-item-carrito" alt="${item.nombre}">
-                    <div class="info-item-carrito">
-                        <div class="titulo-item-carrito">${item.nombre}</div>
-                        <div class="precio-unitario-carrito">${item.precio} MXN</div>
-                    </div>
-                    <div class="controles-cantidad-carrito">
-                        <button class="btn-cant-carrito" onclick="cambiarCantidad(${index}, -1)">-</button>
-                        <span class="num-cant-carrito">${item.cantidad}</span>
-                        <button class="btn-cant-carrito" onclick="cambiarCantidad(${index}, 1)">+</button>
-                    </div>
-                    <div class="precio-total-item">$${itemSubtotal.toLocaleString()}</div>
-                    <button class="btn-eliminar-item" onclick="eliminarDelCarrito(${index})">✕</button>
-                `;
-                contenedor.appendChild(div);
-            });
+carrito.forEach((item, index) => {
+const itemSubtotal = item.precioNum * item.cantidad;
+subtotal += itemSubtotal;
+const div = document.createElement("div");
+div.className = "item-tarjeta-carrito";
+div.innerHTML = `
+<img src="${item.imagen}" class="img-item-carrito" alt="${item.nombre}">
+<div class="info-item-carrito">
+<div class="titulo-item-carrito">${item.nombre}</div>
+<div class="precio-unitario-carrito">${item.precio} MXN</div>
+</div>
+<div class="controles-cantidad-carrito">
+<button class="btn-cant-carrito" onclick="cambiarCantidad(${index}, -1)">-</button>
+<span class="num-cant-carrito">${item.cantidad}</span>
+<button class="btn-cant-carrito" onclick="cambiarCantidad(${index}, 1)">+</button>
+</div>
+<div class="precio-total-item">$${itemSubtotal.toLocaleString()}</div>
+<button class="btn-eliminar-item" onclick="eliminarDelCarrito(${index})">X</button>
+`;
+contenedor.appendChild(div);
+});
 
-            actualizarMontos(subtotal);
-            if (typeof actualizarContadorCarritoGlobal === "function") {
-                actualizarContadorCarritoGlobal();
-            }
-        }
+actualizarMontos(subtotal);
+cargarOpcionesPromociones(carrito);
 
-        function cambiarCantidad(index, cambio) {
-            let carrito = JSON.parse(localStorage.getItem("carrito_kolosos")) || [];
-            carrito[index].cantidad += cambio;
-            
-            if (carrito[index].cantidad <= 0) {
-                carrito.splice(index, 1);
-            }
-            
-            localStorage.setItem("carrito_kolosos", JSON.stringify(carrito));
-            cargarCarritoVisual();
-        }
+if (typeof actualizarContadorCarritoGlobal === "function") {
+actualizarContadorCarritoGlobal();
+}
+}
 
-        function eliminarDelCarrito(index) {
-            if (confirm("¿Deseas eliminar este producto del carrito?")) {
-                let carrito = JSON.parse(localStorage.getItem("carrito_kolosos")) || [];
-                carrito.splice(index, 1);
-                localStorage.setItem("carrito_kolosos", JSON.stringify(carrito));
-                cargarCarritoVisual();
-            }
-        }
+function cambiarCantidad(index, cambio) {
+let carrito = JSON.parse(localStorage.getItem("carrito_kolosos")) || [];
+carrito[index].cantidad += cambio;
+if (carrito[index].cantidad <= 0) {
+carrito.splice(index, 1);
+}
+localStorage.setItem("carrito_kolosos", JSON.stringify(carrito));
+cargarCarritoVisual();
+}
 
-        function aplicarCuponDescuento() {
-            const input = document.getElementById("input-cupon").value.trim().toUpperCase();
-            if (input === "CERAMICA2X1" || input === "PROMO50") {
-                descuentoPorcentaje = 0.5;
-                codigoAplicado = input;
-                
-                const toast = document.getElementById("toast-descuento");
-                toast.classList.add("activo");
-                setTimeout(() => toast.classList.remove("activo"), 3000);
-                
-                cargarCarritoVisual();
-            } else {
-                alert("Código de descuento no válido.");
-            }
-        }
+function eliminarDelCarrito(index) {
+if (confirm("¿Deseas eliminar este producto del carrito?")) {
+let carrito = JSON.parse(localStorage.getItem("carrito_kolosos")) || [];
+carrito.splice(index, 1);
+localStorage.setItem("carrito_kolosos", JSON.stringify(carrito));
+cargarCarritoVisual();
+}
+}
 
-        function actualizarMontos(subtotal) {
-            const descuento = subtotal * descuentoPorcentaje;
-            const total = subtotal - descuento;
+function aplicarCuponDescuento() {
+const select = document.getElementById("input-cupon");
+const selectedOption = select.options[select.selectedIndex];
+const codigo = select.value.trim().toUpperCase();
 
-            document.getElementById("monto-subtotal").textContent = `$${subtotal.toLocaleString()} MXN`;
-            document.getElementById("monto-total").textContent = `$${total.toLocaleString()} MXN`;
+if (!codigo) {
+alert("Por favor selecciona una promoción.");
+return;
+}
 
-            const boxDescuento = document.getElementById("contenedor-descuento");
-            if (descuentoPorcentaje > 0) {
-                boxDescuento.style.display = "flex";
-                document.getElementById("label-cupon-aplicado").textContent = `(${codigoAplicado})`;
-                document.getElementById("monto-descuento").textContent = `-$${descuento.toLocaleString()} MXN`;
-            } else {
-                boxDescuento.style.display = "none";
-            }
-        }
+if (codigo === "CERAMICA2X1" || codigo === "PROMO50") {
+descuentoPorcentaje = 0.5;
+} else if (selectedOption && selectedOption.getAttribute("data-porcentaje")) {
+descuentoPorcentaje = parseFloat(selectedOption.getAttribute("data-porcentaje"));
+} else {
+descuentoPorcentaje = 0.2;
+}
 
-        document.getElementById("btn-ir-a-pagar").addEventListener("click", () => {
-            const usuario = localStorage.getItem("usuario_kolosos");
-            if (!usuario) {
-                alert("Debes iniciar sesión para realizar la compra.");
-                window.location.href = "perfil.html";
-                return;
-            }
-            alert("Próximamente: Módulo de pago en desarrollo.");
-        });
+codigoAplicado = codigo;
+const toast = document.getElementById("toast-descuento");
+toast.classList.add("activo");
+setTimeout(() => toast.classList.remove("activo"), 3000);
+cargarCarritoVisual();
+}
 
-        document.addEventListener("DOMContentLoaded", cargarCarritoVisual);
-   </script>
+function actualizarMontos(subtotal) {
+const descuento = subtotal * descuentoPorcentaje;
+const total = subtotal - descuento;
+document.getElementById("monto-subtotal").textContent = `$${subtotal.toLocaleString()} MXN`;
+document.getElementById("monto-total").textContent = `$${total.toLocaleString()} MXN`;
+const boxDescuento = document.getElementById("contenedor-descuento");
+if (descuentoPorcentaje > 0) {
+boxDescuento.style.display = "flex";
+document.getElementById("label-cupon-aplicado").textContent = `(${codigoAplicado})`;
+document.getElementById("monto-descuento").textContent = `-$${descuento.toLocaleString()} MXN`;
+} else {
+boxDescuento.style.display = "none";
+}
+}
+
+document.getElementById("btn-ir-a-pagar").addEventListener("click", () => {
+const usuario = localStorage.getItem("usuario_kolosos");
+if (!usuario) {
+alert("Debes iniciar sesión para realizar la compra.");
+window.location.href = "perfil.html";
+return;
+}
+alert("Próximamente: Módulo de pago en desarrollo.");
+});
+
+document.addEventListener("DOMContentLoaded", cargarCarritoVisual);
+</script>
 <script src="global.js"></script>
 </body>
 </html>
