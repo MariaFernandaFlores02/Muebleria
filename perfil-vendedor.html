@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil Vendedor C2C - Muebles Kolosos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- BARRA SUPERIOR (HEADER) -->
+    <header class="header">
+        <div class="logo">
+            <img src="imagenes/logo.png" alt="Logo Muebles Kolosos">
+            <span>Muebles Kolosos</span>
+        </div>
+        <nav class="menu">
+            <a href="carrito.html" class="carrito-link" aria-label="Ver carrito">
+                <div class="carrito">
+                    <img src="imagenes/carrito.avif" alt="Carrito">
+                    <span id="contador-carrito" class="contador-badge">0</span>
+                </div>
+            </a>
+            <a href="index.html">Inicio</a>
+            <a href="catalogo.html">Catálogo</a>
+            <a href="promociones.html">Promociones</a>
+            <a href="escaparate.html">Campaña</a>
+            <a href="comunidad.html">Comunidad</a>
+            <a href="c2c.html">Publicar C2C</a>
+            <a href="subasta.html">Subasta</a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="perfil.html">Mi Perfil</a>
+        </nav>
+    </header>
+
+    <main class="contenedor-seccion" style="max-width: 950px; padding: 20px;">
+        
+        <!-- BLOQUE DE INICIO DE SESIÓN DE VENDEDOR -->
+        <div id="box-login-vendedor" style="background: white; padding: 30px; border-radius: 12px; max-width: 450px; margin: 40px auto; box-shadow: 0 4px 15px rgba(0,0,0,0.1); color: #333;">
+            <h2 style="color: #1e293b; margin-bottom: 8px; text-align: center;">Acceso Vendedor C2C</h2>
+            <p style="color: #64748b; font-size: 0.9rem; text-align: center; margin-bottom: 20px;">Ingresa tus credenciales para gestionar tu tienda de reventa.</p>
+            <form id="form-login-vend">
+                <div style="margin-bottom: 15px;">
+                    <label style="font-weight: bold; font-size: 0.9rem; display: block; margin-bottom: 5px;">Correo de Vendedor</label>
+                    <input type="email" id="vend-login-email" placeholder="vendedor@kolosos.com" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label style="font-weight: bold; font-size: 0.9rem; display: block; margin-bottom: 5px;">Contraseña</label>
+                    <input type="password" id="vend-login-pass" placeholder="••••••••" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                </div>
+                <button type="submit" class="boton" style="width: 100%; padding: 10px;">Entrar al Panel de Vendedor</button>
+            </form>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="perfil.html" style="color: #2563eb; font-size: 0.85rem; text-decoration: none;">← Volver al Perfil de Cliente Comprador</a>
+            </div>
+        </div>
+
+        <!-- PANEL DE VENDEDOR (Oculto hasta iniciar sesión) -->
+        <div id="box-panel-vendedor" class="oculto">
+            
+            <!-- Cabecera del Panel -->
+            <div style="background: linear-gradient(135deg, #1e293b, #334155); color: white; padding: 25px; border-radius: 12px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+                <div>
+                    <h1 style="font-size: 1.6rem; margin: 0; color: white;">🏪 Panel de Vendedor C2C</h1>
+                    <p style="margin: 5px 0 0 0; color: #cbd5e1; font-size: 0.95rem;">Gestiona tus publicaciones, edita información y revisa tus ventas.</p>
+                </div>
+                <button id="btn-logout-vend" class="boton" style="background: #ef4444; font-size: 0.85rem; padding: 8px 14px;">Cerrar Sesión</button>
+            </div>
+
+            <!-- Formulario para Publicar Nuevo Mueble -->
+            <div style="background: white; padding: 25px; border-radius: 12px; color: #333; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                <h3 style="margin-bottom: 15px; color: #1e293b;">➕ Publicar Nuevo Mueble C2C</h3>
+                <form id="form-vendedor-c2c" style="display: flex; flex-direction: column; gap: 15px;">
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 250px;">
+                            <label style="font-weight: bold; font-size: 0.9rem; display: block; margin-bottom: 5px;">Título del Mueble</label>
+                            <input type="text" id="vend-c2c-nombre" placeholder="Ej. Escritorio de Madera" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                        </div>
+                        <div style="flex: 1; min-width: 250px;">
+                            <label style="font-weight: bold; font-size: 0.9rem; display: block; margin-bottom: 5px;">Precio</label>
+                            <input type="text" id="vend-c2c-precio" placeholder="$150.000" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 250px;">
+                            <label style="font-weight: bold; font-size: 0.9rem; display: block; margin-bottom: 5px;">Categoría</label>
+                            <select id="vend-c2c-categoria" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                                <option value="sofas">Sofás</option>
+                                <option value="mesas">Mesas</option>
+                                <option value="camas">Camas</option>
+                            </select>
+                        </div>
+                        <div style="flex: 1; min-width: 250px;">
+                            <label style="font-weight: bold; font-size: 0.9rem; display: block; margin-bottom: 5px;">Ruta de Imagen</label>
+                            <input type="text" id="vend-c2c-imagen" placeholder="imagenes/escritorio.jpeg" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                        </div>
+                    </div>
+                    <button type="submit" class="boton" style="margin-top: 10px;">Publicar Mueble</button>
+                </form>
+            </div>
+
+            <!-- Tabla Mis Publicaciones Activas -->
+            <div style="background: white; padding: 22px; border-radius: 12px; color: #333; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.08);">
+                <h3 style="margin-bottom: 15px; color: #1e293b;">📋 Mis Publicaciones Activas</h3>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                        <thead>
+                            <tr style="background: #2563eb; color: white; font-size: 0.85rem;">
+                                <th style="padding: 10px;">IMAGEN / PRODUCTO</th>
+                                <th style="padding: 10px;">CATEGORÍA</th>
+                                <th style="padding: 10px;">PRECIO</th>
+                                <th style="padding: 10px; text-align: center;">ACCIONES</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-vendedor-publicaciones">
+                            <!-- Carga dinámica -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Pedidos Recibidos -->
+            <div style="background: white; padding: 22px; border-radius: 12px; color: #333; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.08);">
+                <h3 style="margin-bottom: 15px; color: #1e293b;">🚚 Pedidos Recibidos de Compradores</h3>
+                <div style="background: #f8fafc; padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0; display:flex; justify-content:space-between; align-items:center;">
+                    <div>
+                        <strong>Escritorio de Madera Usado</strong>
+                        <p style="margin: 3px 0 0 0; color: #64748b; font-size: 0.85rem;">Comprador: Carlos Mendoza | Monto: $150.000</p>
+                    </div>
+                    <span style="background: #dcfce7; color: #15803d; padding: 4px 10px; border-radius: 6px; font-weight: bold; font-size: 0.8rem;">En camino 🚚</span>
+                </div>
+            </div>
+
+            <!-- Reseñas Recibidas Dinámicas -->
+            <div style="background: white; padding: 22px; border-radius: 12px; color: #333; margin-bottom: 40px; box-shadow: 0 2px 10px rgba(0,0,0,0.08);">
+                <h3 style="margin-bottom: 15px; color: #1e293b;">⭐ Reseñas y Opiniones Recibidas</h3>
+                <div id="contenedor-resenas-vendedor" style="display: flex; flex-direction: column; gap: 12px;">
+                    <!-- Aquí se cargan dinámicamente las reseñas de C2C -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal para Editar Publicación -->
+    <div id="modal-editar-vendedor-c2c" class="overlay-sidebar oculto" style="display: flex; justify-content: center; align-items: center; pointer-events: auto;">
+        <div style="background: #fff; padding: 25px; border-radius: 8px; width: 90%; max-width: 420px; color: #1f2937;">
+            <h3 style="margin-bottom: 15px;">Editar Mi Publicación</h3>
+            <form id="form-editar-vendedor-c2c">
+                <input type="hidden" id="edit-vend-p-id">
+                <div style="margin-bottom: 10px;"><label>Título:</label><input type="text" id="edit-vend-p-nombre" style="width: 100%; padding: 8px; border: 1px solid #ccc;"></div>
+                <div style="margin-bottom: 10px;"><label>Categoría:</label><select id="edit-vend-p-categoria" style="width: 100%; padding: 8px; border: 1px solid #ccc;"><option value="sofas">Sofás</option><option value="mesas">Mesas</option><option value="camas">Camas</option></select></div>
+                <div style="margin-bottom: 10px;"><label>Precio:</label><input type="text" id="edit-vend-p-precio" style="width: 100%; padding: 8px; border: 1px solid #ccc;"></div>
+                <div style="margin-bottom: 15px;"><label>Imagen (Ruta):</label><input type="text" id="edit-vend-p-imagen" style="width: 100%; padding: 8px; border: 1px solid #ccc;"></div>
+                <div style="display:flex; gap:10px;">
+                    <button type="submit" class="boton" style="flex:1;">Guardar Cambios</button>
+                    <button type="button" id="btn-cerrar-modal-vend" class="boton" style="background:#6b7280;">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer-kolosos" style="margin-top: 40px;">
+        <div class="footer-inferior" style="text-align: center; padding: 15px;">
+            <p>© 2026 Muebles Kolosos. Todos los Derechos Reservados.</p>
+        </div>
+    </footer>
+
+    <script src="global.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const boxLogin = document.getElementById("box-login-vendedor");
+            const boxPanel = document.getElementById("box-panel-vendedor");
+            const formLoginVend = document.getElementById("form-login-vend");
+            const btnLogoutVend = document.getElementById("btn-logout-vend");
+
+            const tablaPubs = document.getElementById("tabla-vendedor-publicaciones");
+            const formVendedorC2C = document.getElementById("form-vendedor-c2c");
+            const contenedorResenasVend = document.getElementById("contenedor-resenas-vendedor");
+            
+            const modalEditarVend = document.getElementById("modal-editar-vendedor-c2c");
+            const formEditarVend = document.getElementById("form-editar-vendedor-c2c");
+            const btnCerrarModalVend = document.getElementById("btn-cerrar-modal-vend");
+
+            function comprobarSesionVendedor() {
+                const sesion = localStorage.getItem("sesion_vendedor_activa");
+                if (sesion === "true") {
+                    boxLogin.classList.add("oculto");
+                    boxPanel.classList.remove("oculto");
+                    renderizarTabla();
+                    renderizarResenasVendedor();
+                } else {
+                    boxPanel.classList.add("oculto");
+                    boxLogin.classList.remove("oculto");
+                }
+            }
+
+            formLoginVend.addEventListener("submit", (e) => {
+                e.preventDefault();
+                localStorage.setItem("sesion_vendedor_activa", "true");
+                comprobarSesionVendedor();
+                formLoginVend.reset();
+            });
+
+            btnLogoutVend.addEventListener("click", () => {
+                localStorage.removeItem("sesion_vendedor_activa");
+                comprobarSesionVendedor();
+            });
+
+            function obtenerPublicaciones() {
+                let pubs = JSON.parse(localStorage.getItem("productos_c2c"));
+                if (!pubs || pubs.length === 0) {
+                    pubs = [
+                        { id: "c2c-1", nombre: "Escritorio de Madera Usado", categoria: "mesas", precio: "$150.000", imagen: "imagenes/escritorio.jpeg" },
+                        { id: "c2c-2", nombre: "Sofá Seccional L-Shape", categoria: "sofas", precio: "$450.000", imagen: "imagenes/sofa.png" },
+                        { id: "c2c-3", nombre: "Mesa Comedor Nordik", categoria: "mesas", precio: "$280.000", imagen: "imagenes/comedor.jpeg" }
+                    ];
+                    localStorage.setItem("productos_c2c", JSON.stringify(pubs));
+                }
+                return pubs;
+            }
+
+            function renderizarTabla() {
+                const pubs = obtenerPublicaciones();
+                tablaPubs.innerHTML = "";
+
+                if (pubs.length === 0) {
+                    tablaPubs.innerHTML = `<tr><td colspan="4" style="text-align:center; padding: 15px; color: #64748b;">No tienes publicaciones activas.</td></tr>`;
+                    return;
+                }
+
+                pubs.forEach(p => {
+                    const tr = document.createElement("tr");
+                    tr.style = "border-bottom: 1px solid #e2e8f0;";
+                    tr.innerHTML = `
+                        <td style="padding: 10px; display:flex; align-items:center; gap:10px;">
+                            <img src="${p.imagen}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px;" onerror="this.src='https://via.placeholder.com/40'">
+                            <strong>${p.nombre}</strong>
+                        </td>
+                        <td style="padding: 10px; text-transform: capitalize;">${p.categoria}</td>
+                        <td style="padding: 10px; color: #d35400; font-weight: bold;">${p.precio}</td>
+                        <td style="padding: 10px; text-align: center;">
+                            <button onclick="abrirEditarVendedor('${p.id}')" style="background:#2563eb; color:white; border:none; padding:5px 10px; border-radius:4px; font-size:12px; cursor:pointer; margin-right:5px;">✏️ Editar</button>
+                            <button onclick="retirarMuebleVendedor('${p.id}')" style="background:#ef4444; color:white; border:none; padding:5px 10px; border-radius:4px; font-size:12px; cursor:pointer;">🗑️ Retirar</button>
+                        </td>
+                    `;
+                    tablaPubs.appendChild(tr);
+                });
+            }
+
+            function renderizarResenasVendedor() {
+                const resenasObjeto = JSON.parse(localStorage.getItem("resenas_productos_c2c")) || {};
+                const resenasLista = JSON.parse(localStorage.getItem("resenas_c2c")) || [];
+                
+                contenedorResenasVend.innerHTML = "";
+                let listaTotal = [];
+
+                Object.keys(resenasObjeto).forEach(prodId => {
+                    if (Array.isArray(resenasObjeto[prodId])) {
+                        resenasObjeto[prodId].forEach(r => listaTotal.push(r));
+                    }
+                });
+
+                if (Array.isArray(resenasLista)) {
+                    resenasLista.forEach(r => listaTotal.push(r));
+                }
+
+                if (listaTotal.length === 0) {
+                    listaTotal.push({
+                        autor: "Cliente C2C",
+                        estrellas: "⭐⭐⭐⭐⭐",
+                        texto: "Excelente producto y servicio entregado a tiempo.",
+                        fecha: "Reciente"
+                    });
+                }
+
+                listaTotal.forEach(r => {
+                    const div = document.createElement("div");
+                    div.style = "background: #f8fafc; padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0;";
+                    div.innerHTML = `
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                            <strong>👤 ${r.autor || r.usuario || 'Cliente C2C'}</strong>
+                            <span style="color: #f59e0b; font-size: 0.9rem;">${r.estrellas || '⭐⭐⭐⭐⭐'}</span>
+                        </div>
+                        <p style="margin: 4px 0 0 0; color: #475569; font-size: 0.9rem;">"${r.texto || r.comentario || 'Excelente servicio.'}"</p>
+                    `;
+                    contenedorResenasVend.appendChild(div);
+                });
+            }
+
+            formVendedorC2C.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const nuevo = {
+                    id: "c2c-" + Date.now(),
+                    nombre: document.getElementById("vend-c2c-nombre").value,
+                    precio: document.getElementById("vend-c2c-precio").value,
+                    categoria: document.getElementById("vend-c2c-categoria").value,
+                    imagen: document.getElementById("vend-c2c-imagen").value
+                };
+
+                let pubs = obtenerPublicaciones();
+                pubs.push(nuevo);
+                localStorage.setItem("productos_c2c", JSON.stringify(pubs));
+
+                let catalogoGeneral = JSON.parse(localStorage.getItem("productos_kolosos")) || [];
+                catalogoGeneral.push(nuevo);
+                localStorage.setItem("productos_kolosos", JSON.stringify(catalogoGeneral));
+
+                renderizarTabla();
+                formVendedorC2C.reset();
+                alert("🚀 ¡Mueble publicado con éxito y sincronizado!");
+            });
+
+            window.abrirEditarVendedor = function(id) {
+                const pubs = obtenerPublicaciones();
+                const p = pubs.find(item => item.id === id);
+                if (!p) return;
+                document.getElementById("edit-vend-p-id").value = p.id;
+                document.getElementById("edit-vend-p-nombre").value = p.nombre;
+                document.getElementById("edit-vend-p-categoria").value = p.categoria;
+                document.getElementById("edit-vend-p-precio").value = p.precio;
+                document.getElementById("edit-vend-p-imagen").value = p.imagen;
+                modalEditarVend.classList.remove("oculto");
+            };
+
+            if(btnCerrarModalVend) {
+                btnCerrarModalVend.onclick = () => modalEditarVend.classList.add("oculto");
+            }
+
+            formEditarVend.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const id = document.getElementById("edit-vend-p-id").value;
+                let pubs = obtenerPublicaciones();
+                let index = pubs.findIndex(item => item.id === id);
+                if (index !== -1) {
+                    pubs[index].nombre = document.getElementById("edit-vend-p-nombre").value;
+                    pubs[index].categoria = document.getElementById("edit-vend-p-categoria").value;
+                    pubs[index].precio = document.getElementById("edit-vend-p-precio").value;
+                    pubs[index].imagen = document.getElementById("edit-vend-p-imagen").value;
+                    localStorage.setItem("productos_c2c", JSON.stringify(pubs));
+
+                    let catalogoGeneral = JSON.parse(localStorage.getItem("productos_kolosos")) || [];
+                    catalogoGeneral = catalogoGeneral.map(item => item.id === id ? pubs[index] : item);
+                    localStorage.setItem("productos_kolosos", JSON.stringify(catalogoGeneral));
+
+                    renderizarTabla();
+                    modalEditarVend.classList.add("oculto");
+                    alert("✏️ Publicación actualizada correctamente");
+                }
+            });
+
+            window.retirarMuebleVendedor = function(id) {
+                let pubs = obtenerPublicaciones();
+                pubs = pubs.filter(p => p.id !== id);
+                localStorage.setItem("productos_c2c", JSON.stringify(pubs));
+
+                let catalogoGeneral = JSON.parse(localStorage.getItem("productos_kolosos")) || [];
+                catalogoGeneral = catalogoGeneral.filter(p => p.id !== id);
+                localStorage.setItem("productos_kolosos", JSON.stringify(catalogoGeneral));
+
+                renderizarTabla();
+            };
+
+            comprobarSesionVendedor();
+        });
+    </script>
+</body>
+</html>

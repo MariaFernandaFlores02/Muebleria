@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promociones y Cupones - Muebles Kolosos</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .cupones-container {
+            max-width: 900px;
+            margin: 0 auto;
+            color: #333;
+        }
+        .billetera-header {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .billetera-header input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+        .grilla-cupones {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 768px) {
+            .grilla-cupones { grid-template-columns: 1fr; }
+        }
+        .tarjeta-cupon {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border-left: 5px solid #2563eb;
+        }
+        .cupon-contenido {
+            padding: 15px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .cupon-logo {
+            width: 60px;
+            height: 60px;
+            background: #f1f5f9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #2563eb;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        .cupon-detalles h4 {
+            margin: 0 0 5px 0;
+            font-size: 1.05rem;
+            color: #1e293b;
+        }
+        .cupon-detalles p {
+            margin: 0;
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+        .cupon-footer {
+            padding: 10px 15px;
+            background: #f8fafc;
+            border-top: 1px solid #f1f5f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+        .btn-cupon {
+            padding: 6px 14px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+        .btn-canjear {
+            background: #2563eb;
+            color: white;
+        }
+        .btn-despues {
+            background: #e2e8f0;
+            color: #334155;
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <div class="logo">
+        <img src="imagenes/logo.png" alt="Logo Muebles Kolosos">
+        <span>Muebles Kolosos</span>
+    </div>
+    <nav class="menu">
+        <a href="carrito.html" class="carrito-link" aria-label="Ver carrito">
+            <div class="carrito">
+                <img src="imagenes/carrito.avif" alt="Carrito">
+                <span id="contador-carrito" class="contador-badge">0</span>
+            </div>
+        </a>
+        <a href="index.html">Inicio</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="promociones.html">Promociones</a>
+        <a href="escaparate.html">Campaña</a>
+        <a href="comunidad.html">Comunidad</a>
+        <a href="c2c.html">Publicar C2C</a>
+        <a href="subasta.html">Subasta</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="perfil.html">Mi Perfil</a>
+    </nav>
+</header>
+
+<main class="contenedor-seccion cupones-container">
+    <h1 class="titulo-pagina" style="color: white; text-align: center;">Promociones y Cupones Activos</h1>
+    <p class="subtitulo-pagina" style="color: #f1f5f9; text-align: center; margin-bottom: 25px;">Aprovecha nuestros 10 descuentos especiales en colecciones seleccionadas.</p>
+
+    <div class="billetera-header">
+        <input type="text" id="input-nuevo-cupon" placeholder="Ingresa el código de cupón (Ej. KOLOSOS20)">
+        <button type="button" class="boton" id="btn-anadir-cupon" style="padding: 10px 20px;">Canjear</button>
+    </div>
+
+    <!-- Grilla con exactamente los 10 Cupones -->
+    <div class="grilla-cupones" id="contenedor-grilla-cupones">
+        <!-- Cupón 1 -->
+        <div class="tarjeta-cupon">
+            <div class="cupon-contenido">
+                <div class="cupon-logo">20%</div>
+                <div class="cupon-detalles">
+                    <h4>20% OFF en Catálogo General</h4>
+                    <p>Usa el código al finalizar tu compra en el carrito.</p>
+                    <p style="color: #d35400; font-weight: bold; margin-top: 4px;">Código: KOLOSOS20</p>
+                </div>
+            </div>
+            <div class="cupon-footer">
+                <span>Válida Hasta: 30/11/2026</span>
+                <button class="btn-cupon btn-canjear" onclick="mostrarMensajeVisual('¡Cupón KOLOSOS20 aplicado!', 'exito')">Canjear</button>
+            </div>
+        </div>
+
+        <!-- Cupón 2 -->
+        <div class="tarjeta-cupon" style="border-left-color: #d35400;">
+            <div class="cupon-contenido">
+                <div class="cupon-logo" style="color: #d35400;">15%</div>
+                <div class="cupon-detalles">
+                    <h4>15% OFF en Ofertas de Temporada</h4>
+                    <p>Aplica para productos de la sección de salas y sofás.</p>
+                    <p style="color: #d35400; font-weight: bold; margin-top: 4px;">Código: OFERTAFALL</p>
+                </div>
+            </div>
+            <div class="cupon-footer">
+                <span>Válida Hasta: 07/11/2026</span>
+                <button class="btn-cupon btn-despues" onclick="mostrarMensajeVisual('Cupón guardado', 'info')">Usar Después</button>
+            </div>
+        </div>
+
+        <!-- Cupón 3 -->
+        <div class="tarjeta-cupon" style="border-left-color: #10b981;">
+            <div class="cupon-contenido">
+                <div class="cupon-logo" style="color: #10b981;">$500</div>
+                <div class="cupon-detalles">
+                    <h4>$500 MXN de Descuento en Sofás</h4>
+                    <p>Gasto mínimo de $3.000 MXN en línea seleccionada.</p>
+                    <p style="color: #10b981; font-weight: bold; margin-top: 4px;">Código: SOFAS500</p>
+                </div>
+            </div>
+            <div class="cupon-footer">
+                <span>Válida Hasta: 15/12/2026</span>
+                <button class="btn-cupon btn-canjear" onclick="mostrarMensajeVisual('¡Cupón SOFAS500 aplicado!', 'exito')">Canjear</button>
+            </div>
+        </div>
+
+        <!-- Cupón 4 -->
+        <div class="tarjeta-cupon" style="border-left-color: #8b5cf6;">
+            <div class="cupon-contenido">
+                <div class="cupon-logo" style="color: #8b5cf6;">ENV</div>
+                <div class="cupon-detalles">
+                    <h4>Envío Gratis en Todo México</h4>
+                    <p>Válido en compras mayores a $5.000 MXN.</p>
+                    <p style="color: #8b5cf6; font-weight: bold; margin-top: 4px;">Código: KOLOSOSENVIO</p>
+                </div>
+            </div>
+            <div class="cupon-footer">
+                <span>Válida Hasta: 31/12/2026</span>
+                <button class="btn-cupon btn-despues" onclick="mostrarMensajeVisual('Cupón guardado', 'info')">Usar Después</button>
+            </div>
+        </div>
+
+        <!-- Cupón 5 -->
+        <div class="tarjeta-cupon" style="border-left-color: #ec4899;">
+            <div class="cupon-contenido">
+                <div class="cupon-logo" style="color: #ec4899;">10%</div>
+                <div class="cupon-detalles">
+                    <h4>10% OFF en Mesas de Comedor</h4>
+                    <p>Aplica en modelos Nordik y Parota.</p>
+                    <p style="color: #ec4899; font-weight: bold; margin-top: 4px;">Código: MESAS10</p>
+                </div>
+            </div>
+            <div class="cupon-footer">
+                <span>Válida Hasta: 20/11/2026</span>
+                <button class="btn-cupon btn-canjear" onclick="mostrarMensajeVisual('¡Cupón MESAS10 aplicado!', 'exito')">Canjear</button>
+            </div>
+        </div>
+
+        <!-- Cupón 6 -->
+        <div class="tarjeta-cupon" style="border-left-color: #f59e0b;">
+            <div class="cupon-contenido">
+                <div class="cupon-logo" style="color: #f59e0b;">$1K</div>
+                <div class="cupon-detalles">
+                    <h4>$1.000 MXN en Recámaras King Size</h4>
+                    <p>Gasto mínimo de $8.000 MXN.</p>
+                    <p style="color: #f59e0b; font-weight: bold; margin-top: 4px;">Código: TURIN1000</p>
+                </div>
+            </div>
+            <div class="cupon-footer">
+                <span>Válida Hasta: 30/11/2026</span>
+                <button class="btn-cupon btn-despues" onclick="mostrarMensajeVisual('Cupón guardado', 'info')">Usar Después</button>
+            </div>
+        </div>
+
+        <!-- Cupón 7 -->
+        <div class="tarjeta-cupon" style="border-left-color: #06b6d4;">
+            <div class="cupon-contenido">
+                <div class="cupon-logo" style="color: #06b6d4;">25%</div>
+                <div class="cupon-detalles">
+                    <h4>25% OFF en Muebles C2C Usados</h4>
+                    <p>Aplica en todo el mercado de comunidad.</p>
+                    <p style="color: #06b6d4; font-weight: bold; margin-top: 4px;">Código: C2C25</p>
+                </div>
+            </div>
+            <div class="cupon-footer">
+                <span>Válida Hasta: 15/11/2026</span>
+                <button class="btn-cupon btn-canjear" onclick="mostrarMensajeVisual('¡Cupón C2C25 aplicado!', 'exito')">Canjear</button>
+            </div>
+        </div>
+
+        <!-- Cupón 8 -->
+        <div class="tarjeta-cupon" style="border-left-color: #6366f1;">
+            <div class="cupon-contenido">
+                <div class="cupon-logo" style="color: #6366f1;">VIP</div>
+                <div class="cupon-detalles">
+                    <h4>Bono Exclusivo Clientes VIP</h4>
+                    <p>$300 MXN de regalo en tu próxima compra.</p>
+                    <p style="color: #6366f1; font-weight: bold; margin-top: 4px;">Código: VIPKOLOSOS</p>
+                </div>
+            </div>
+            <div class="cupon-footer">
+                <span>Válida Hasta: 31/12/2026</span>
+                <button class="btn-cupon btn-despues" onclick="mostrarMensajeVisual('Cupón guardado', 'info')">Usar Después</button>
+            </div>
+        </div>
+
+        <!-- Cupón 9 -->
+        <div class="tarjeta-cupon" style="border-left-color: #14b8a6;">
+            <div class="cupon-contenido">
+                <div class="cupon-logo" style="color: #14b8a6;">5%</div>
+                <div class="cupon-detalles">
+                    <h4>5% OFF Pago en Efectivo</h4>
+                    <p>Aplica automáticamente al seleccionar método de pago.</p>
+                    <p style="color: #14b8a6; font-weight: bold; margin-top: 4px;">Código: PAGOFAST</p>
+                </div>
+            </div>
+            <div class="cupon-footer">
+                <span>Válida Hasta: 31/12/2026</span>
+                <button class="btn-cupon btn-canjear" onclick="mostrarMensajeVisual('¡Cupón PAGOFAST aplicado!', 'exito')">Canjear</button>
+            </div>
+        </div>
+
+        <!-- Cupón 10 -->
+        <div class="tarjeta-cupon" style="border-left-color: #f43f5e;">
+            <div class="cupon-contenido">
+                <div class="cupon-logo" style="color: #f43f5e;">REG</div>
+                <div class="cupon-detalles">
+                    <h4>Regalo Sorpresa en Subastas</h4>
+                    <p>Participa en cualquier puja y gana un accesorio decorativo.</p>
+                    <p style="color: #f43f5e; font-weight: bold; margin-top: 4px;">Código: SUBASTAGIFT</p>
+                </div>
+            </div>
+            <div class="cupon-footer">
+                <span>Válida Hasta: 25/11/2026</span>
+                <button class="btn-cupon btn-despues" onclick="mostrarMensajeVisual('Cupón guardado', 'info')">Usar Después</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer-kolosos" style="margin-top: 40px;">
+    <div class="footer-inferior" style="text-align: center; padding: 15px;">
+        <p>© 2026 Muebles Kolosos. Todos los Derechos Reservados.</p>
+    </div>
+</footer>
+
+<script src="global.js"></script>
+</body>
+</html>

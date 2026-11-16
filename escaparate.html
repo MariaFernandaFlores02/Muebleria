@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campaña Exclusiva - Muebles Kolosos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <!-- BARRA SUPERIOR (HEADER) ACTUALIZADA CON TODOS LOS MÓDULOS -->
+<header class="header">
+    <div class="logo">
+        <img src="imagenes/logo.png" alt="Logo Muebles Kolosos">
+        <span>Muebles Kolosos</span>
+    </div>
+    <nav class="menu">
+        <a href="carrito.html" class="carrito-link" aria-label="Ver carrito">
+            <div class="carrito">
+                <img src="imagenes/carrito.avif" alt="Carrito">
+                <span id="contador-carrito" class="contador-badge">0</span>
+            </div>
+        </a>
+        <a href="index.html">Inicio</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="promociones.html">Promociones</a>
+        <a href="escaparate.html" class="activo">Campaña</a>
+        <a href="comunidad.html">Comunidad</a>
+        <a href="c2c.html">Publicar C2C</a>
+        <a href="subasta.html">Subasta</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="perfil.html">Mi Perfil</a>
+    </nav>
+</header>
+    <main class="contenedor-seccion">
+        <div style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('imagenes/sofa.png') center/cover; padding: 60px 20px; border-radius: 12px; text-align: center; color: white; margin-bottom: 40px;">
+            <h1 style="font-size: 2.5rem; margin-bottom: 15px;">Colección Otoño-Invierno 2026</h1>
+            <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto 25px auto;">Renueva tu hogar con diseños ergonómicos y el confort absoluto que mereces.</p>
+            <a href="catalogo.html" class="boton" style="background-color: #2563eb;">Explorar Colección</a>
+        </div>
+        <div style="background: white; border-radius: 12px; padding: 30px; display: flex; flex-wrap: wrap; gap: 30px; align-items: center; color: #333; margin-bottom: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <div style="flex: 1; min-width: 280px;">
+                <img src="imagenes/sofa2.jpg" alt="Sofá Destacado" style="width: 100%; border-radius: 8px; object-fit: cover; max-height: 300px;">
+            </div>
+            <div style="flex: 1; min-width: 280px;">
+                <span style="background: #fef3c7; color: #d97706; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 0.85rem;">⭐ Producto Estrella de la Campaña</span>
+                <h2 style="font-size: 2rem; margin: 10px 0; color: #1e293b;">Sofá Seccional L-Shape</h2>
+                <p style="color: #64748b; margin-bottom: 15px;">Diseñado para maximizar el espacio de tu sala con elegancia y máxima durabilidad. Tapizado en lino premium.</p>
+                <p style="font-size: 1.5rem; font-weight: bold; color: #d35400; margin-bottom: 20px;">$680.000 MXN</p>
+                <a href="detalle.html?id=sofa-lshape" class="boton">Ver Detalles y Comprar</a>
+            </div>
+        </div>
+        <h2 style="text-align: center; margin-bottom: 25px; color: white;">Lo que dicen nuestros clientes</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+            <div style="background: white; padding: 20px; border-radius: 10px; color: #333; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                <div style="color: #f59e0b; font-size: 1.1rem; margin-bottom: 10px;">⭐⭐⭐⭐⭐</div>
+                <p style="font-style: italic; color: #4b5563; margin-bottom: 15px;">"El envío fue sumamente rápido y el sofá superó por completo mis expectativas de comodidad. ¡100% recomendados!"</p>
+                <p style="font-weight: bold; color: #1e293b;">- Mariana Garza (CDMX)</p>
+            </div>
+            <div style="background: white; padding: 20px; border-radius: 10px; color: #333; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                <div style="color: #f59e0b; font-size: 1.1rem; margin-bottom: 10px;">⭐⭐⭐⭐⭐</div>
+                <p style="font-style: italic; color: #4b5563; margin-bottom: 15px;">"Excelente atención y los materiales de la mesa Nordik son de primera calidad. Excelente relación calidad-precio."</p>
+                <p style="font-weight: bold; color: #1e293b;">- Alejandro Soto (Guadalajara)</p>
+            </div>
+        </div>
+    </main>
+    <footer class="footer-kolosos" style="margin-top: 40px;">
+        <div class="footer-inferior" style="text-align: center; padding: 15px;">
+            <p>© 2026 Muebles Kolosos. Todos los Derechos Reservados.</p>
+        </div>
+    </footer>
+    <script src="global.js"></script>
+</body>
+</html>

@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto - Muebles Kolosos</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-        <!-- BARRA SUPERIOR (HEADER) -->
-  <header class="header">
+   <!-- BARRA SUPERIOR (HEADER) ACTUALIZADA CON TODOS LOS MÓDULOS -->
+<header class="header">
     <div class="logo">
         <img src="imagenes/logo.png" alt="Logo Muebles Kolosos">
         <span>Muebles Kolosos</span>
@@ -25,43 +22,37 @@
         </a>
         <a href="index.html">Inicio</a>
         <a href="catalogo.html">Catálogo</a>
+        <a href="promociones.html">Promociones</a>
+        <a href="escaparate.html">Campaña</a>
+        <a href="comunidad.html">Comunidad</a>
+        <a href="c2c.html">Publicar C2C</a>
+        <a href="subasta.html">Subasta</a>
         <a href="nosotros.html">Nosotros</a>
         <a href="contacto.html">Contacto</a>
         <a href="perfil.html">Mi Perfil</a>
     </nav>
 </header>
 
-    <!-- SECCIÓN FORMULARIO DE CONTACTO -->
     <main class="contenedor-seccion">
         <h1 class="titulo-pagina">Contáctanos</h1>
         <p class="subtitulo-pagina">¿Tienes alguna duda o solicitud especial? Escríbenos y te responderemos pronto.</p>
 
-        <!-- ALERTA SIMULADA -->
-        <div id="alerta-contacto" class="alerta-exito oculto">
-            Mensaje enviado. ¡Nos pondremos en contacto contigo pronto!
-        </div>
-
-        <!-- FORMULARIO DE CONTACTO -->
         <form id="form-contacto" class="formulario-contacto">
             <div class="campo-form">
                 <label for="nombre">Nombre completo</label>
                 <input type="text" id="nombre" placeholder="Tu nombre" >
             </div>
-
             <div class="campo-form">
                 <label for="email-contacto">Correo electrónico</label>
-                <input type="email" id="email-contacto" placeholder="tu@correo.com">
+                <input type="email" id="email-contacto" placeholder="tu@correo.com" >
             </div>
-
             <div class="campo-form">
                 <label for="mensaje">Mensaje</label>
-                <textarea id="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..."></textarea>
+                <textarea id="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." ></textarea>
             </div>
-
             <button type="submit" class="boton">Enviar Mensaje</button>
         </form>
 
-        <!-- REDES SOCIALES -->
         <div class="redes-sociales">
             <h3>Síguenos en nuestras redes</h3>
             <div class="iconos-redes">
@@ -72,29 +63,16 @@
         </div>
     </main>
 
-    <!-- SCRIPT SIMULACIÓN CONTACTO -->
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const formContacto = document.getElementById("form-contacto");
-            const alertaContacto = document.getElementById("alerta-contacto");
-
-            formContacto.addEventListener("submit", (e) => {
-                e.preventDefault(); // Detiene la recarga de la página
-
-                // Muestra la alerta
-                alertaContacto.classList.remove("oculto");
-
-                // Limpia el formulario
-                formContacto.reset();
-
-                // Oculta la alerta tras 4 segundos
-                setTimeout(() => {
-                    alertaContacto.classList.add("oculto");
-                }, 4000);
-            });
-        });
-    </script>
 <script src="global.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const formContacto = document.getElementById("form-contacto");
+        formContacto.addEventListener("submit", (e) => {
+            e.preventDefault();
+            formContacto.reset();
+            mostrarMensajeVisual("Mensaje enviado. ¡Nos pondremos en contacto contigo pronto!", "exito");
+        });
+    });
+</script>
 </body>
-
-</html> 
+</html>

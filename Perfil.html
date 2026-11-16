@@ -1,359 +1,423 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Perfil - Muebles Kolosos</title>
+    <title>Mi Perfil Comprador - Muebles Kolosos</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-         <!-- BARRA SUPERIOR (HEADER) -->
- <header class="header">
-    <div class="logo">
-        <img src="imagenes/logo.png" alt="Logo Muebles Kolosos">
-        <span>Muebles Kolosos</span>
-    </div>
-    <nav class="menu">
-        <a href="carrito.html" class="carrito-link" aria-label="Ver carrito">
-            <div class="carrito">
-                <img src="imagenes/carrito.avif" alt="Carrito">
-                <span id="contador-carrito" class="contador-badge">0</span>
-            </div>
-        </a>
-        <a href="index.html">Inicio</a>
-        <a href="catalogo.html">Catálogo</a>
-        <a href="nosotros.html">Nosotros</a>
-        <a href="contacto.html">Contacto</a>
-        <a href="perfil.html">Mi Perfil</a>
-    </nav>
-</header>
-
-    <!-- SECCIÓN DE AUTENTICACIÓN Y PERFIL -->
-    <main class="contenedor-seccion">
+  <!-- BARRA SUPERIOR (HEADER) -->
+  <header class="header">
+      <div class="logo">
+          <img src="imagenes/logo.png" alt="Logo Muebles Kolosos">
+          <span>Muebles Kolosos</span>
+      </div>
+      <nav class="menu">
+          <a href="carrito.html" class="carrito-link" aria-label="Ver carrito">
+              <div class="carrito">
+                  <img src="imagenes/carrito.avif" alt="Carrito">
+                  <span id="contador-carrito" class="contador-badge">0</span>
+              </div>
+          </a>
+          <a href="index.html">Inicio</a>
+          <a href="catalogo.html">Catálogo</a>
+          <a href="promociones.html">Promociones</a>
+          <a href="escaparate.html">Campaña</a>
+          <a href="comunidad.html">Comunidad</a>
+          <a href="c2c.html">Publicar C2C</a>
+          <a href="subasta.html">Subasta</a>
+          <a href="nosotros.html">Nosotros</a>
+          <a href="contacto.html">Contacto</a>
+          <a href="perfil.html" class="activo">Mi Perfil</a>
+      </nav>
+  </header>
+    <main class="contenedor-seccion" style="max-width: 900px; padding: 20px;">
+        <h1 class="titulo-pagina">Mi Perfil (Cliente Comprador)</h1>
         
-        <!-- ALERTA DE ESTADO -->
-        <div id="alerta-auth" class="alerta-exito oculto"></div>
-
-        <div class="contenedor-auth">
-            
-            <!-- VISTA 1: INICIAR SESIÓN -->
-            <div id="box-login" class="box-auth">
-                <h2 class="titulo-auth">Iniciar Sesión</h2>
-                <form id="form-login" class="formulario-auth">
-                    <div class="campo-form">
-                        <label for="login-email">Correo electrónico</label>
-                        <input type="email" id="login-email" placeholder="tu@correo.com" >
-                    </div>
-                    <div class="campo-form">
-                        <label for="login-pass">Contraseña</label>
-                        <input type="password" id="login-pass" placeholder="••••••••" >
-                    </div>
-                    <button type="submit" class="boton">Entrar</button>
-                </form>
-                <p class="texto-cambio-auth">
-                    ¿No tienes una cuenta? <a href="#" id="link-ir-registro">Regístrate aquí</a>
-                </p>
+        <!-- Enlace exclusivo para ir al rol de Vendedor C2C -->
+        <div style="background: white; border-radius: 10px; padding: 15px; margin-bottom: 25px; display: flex; align-items: center; justify-content: space-between; gap: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+            <div>
+                <strong style="color: #1e293b; display: block; font-size: 0.95rem;">🏬 ¿Vendes muebles usados en Kolosos?</strong>
+                <span style="color: #64748b; font-size: 0.85rem;">Accede a tu panel independiente de Vendedor C2C para administrar tus publicaciones.</span>
             </div>
-
-            <!-- VISTA 2: CREAR CUENTA -->
-            <div id="box-registro" class="box-auth oculto">
-                <h2 class="titulo-auth">Crear Cuenta</h2>
-                <form id="form-registro" class="formulario-auth">
-                    <div class="campo-form">
-                        <label for="reg-nombre">Nombre completo</label>
-                        <input type="text" id="reg-nombre" placeholder="Tu nombre y apellido" >
-                    </div>
-                    <div class="campo-form">
-                        <label for="reg-email">Correo electrónico</label>
-                        <input type="email" id="reg-email" placeholder="tu@correo.com" >
-                    </div>
-                    <div class="campo-form">
-                        <label for="reg-telefono">Teléfono de contacto</label>
-                        <input type="tel" id="reg-telefono" placeholder="55 1234 5678" >
-                    </div>
-                    <div class="campo-form">
-                        <label for="reg-direccion">Dirección de envío</label>
-                        <input type="text" id="reg-direccion" placeholder="Calle, número, colonia" >
-                    </div>
-                    <div class="campo-form">
-                        <label for="reg-cp">Código Postal</label>
-                        <input type="text" id="reg-cp" placeholder="00000" >
-                    </div>
-                    <div class="campo-form">
-                        <label for="reg-pass">Contraseña</label>
-                        <input type="password" id="reg-pass" placeholder="••••••••" >
-                    </div>
-                    <button type="submit" class="boton">Registrarse</button>
-                </form>
-                <p class="texto-cambio-auth">
-                    ¿Ya tienes una cuenta? <a href="#" id="link-ir-login">Inicia sesión aquí</a>
-                </p>
-            </div>
-
-            <!-- VISTA 3: PANEL DE USUARIO (LECTURA / EDICIÓN) -->
-            <div id="box-panel-usuario" class="box-auth oculto">
-                <div class="header-perfil">
-                    <div class="avatar-usuario">👤</div>
-                    <h2 id="saludo-usuario">¡Hola, Cliente!</h2>
-                </div>
-
-                <!-- MODO LECTURA -->
-                <div id="vista-datos-lectura">
-                    <h3 class="subtitulo-panel">Mis Datos Personales</h3>
-                    <p class="dato-item"><strong>Nombre:</strong> <span id="lbl-nombre">Maria Flores</span></p>
-                    <p class="dato-item"><strong>Correo:</strong> <span id="lbl-email">floresoregelmariafernanda@gmail.com</span></p>
-                    <p class="dato-item"><strong>Teléfono:</strong> <span id="lbl-telefono">55 9876 5432</span></p>
-                    <p class="dato-item"><strong>Dirección:</strong> <span id="lbl-direccion">Av. Insurgentes Sur 123, Col. Roma</span></p>
-                    <p class="dato-item"><strong>Código Postal:</strong> <span id="lbl-cp">06700</span></p>
-                    
-                    <button id="btn-activar-edicion" class="boton" style="margin-top: 15px;">Editar Datos</button>
-                </div>
-
-                <!-- FORMULARIO DE EDICIÓN -->
-                <form id="form-editar-perfil" class="formulario-auth oculto">
-                    <h3 class="subtitulo-panel">Editar Datos Personales</h3>
-                    
-                    <div class="campo-form">
-                        <label for="edit-nombre">Nombre completo</label>
-                        <input type="text" id="edit-nombre" required>
-                    </div>
-                    <div class="campo-form">
-                        <label for="edit-email">Correo electrónico</label>
-                        <input type="email" id="edit-email" required>
-                    </div>
-                    <div class="campo-form">
-                        <label for="edit-telefono">Teléfono</label>
-                        <input type="tel" id="edit-telefono" required>
-                    </div>
-                    <div class="campo-form">
-                        <label for="edit-direccion">Dirección de envío</label>
-                        <input type="text" id="edit-direccion" required>
-                    </div>
-                    <div class="campo-form">
-                        <label for="edit-cp">Código Postal</label>
-                        <input type="text" id="edit-cp" required>
-                    </div>
-
-                    <button type="submit" class="boton">Guardar Cambios</button>
-                    <button type="button" id="btn-cancelar-edicion" class="boton boton-logout" style="margin-top: 5px;">Cancelar</button>
-                </form>
-
-                <div class="seccion-perfil-info" style="margin-top: 25px;">
-                    <h3 class="subtitulo-panel">Mis Pedidos Recientes</h3>
-                    <div class="tarjeta-historial">
-                        <p><strong>Pedido #1042</strong> - Sofá Comfort Odesa</p>
-                        <span class="estado-pedido">En camino 🚚</span>
-                    </div>
-                </div>
-
-                <button id="btn-logout" class="boton boton-logout" style="margin-top: 20px;">Cerrar Sesión</button>
-            </div>
-
+            <a href="perfil-vendedor.html" class="boton" style="background-color: #1e293b; padding: 8px 14px; font-size: 0.85rem; text-decoration: none; white-space: nowrap;">Ir a Perfil de Vendedor →</a>
         </div>
-        <div class="enlace-inferior-admin">
-                <p>
-                    ¿Eres administrador? <a href="admin.html">Entrar al panel de administrador</a>
-                </p>
-            </div>
 
+        <!-- FORMULARIO C2C REUBICADO -->
+        <div style="background: white; padding: 25px; border-radius: 12px; color: #333; margin-bottom: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+            <h3 style="margin-bottom: 15px; color: #1e293b;">📦 Publicar Tu Mueble Usado / Reventa (C2C)</h3>
+            <form id="form-c2c-perfil" style="display: flex; flex-direction: column; gap: 15px;">
+                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <label style="font-weight: bold; font-size: 0.9rem; display: block; margin-bottom: 5px;">Título del Producto</label>
+                        <input type="text" id="c2c-perfil-nombre" placeholder="Ej. Escritorio de Madera Usado"  style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                    </div>
+                    <div style="flex: 1; min-width: 250px;">
+                        <label style="font-weight: bold; font-size: 0.9rem; display: block; margin-bottom: 5px;">Precio (Ej. $150.000)</label>
+                        <input type="text" id="c2c-perfil-precio" placeholder="$150.000" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                    </div>
+                </div>
+                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <label style="font-weight: bold; font-size: 0.9rem; display: block; margin-bottom: 5px;">Categoría</label>
+                        <select id="c2c-perfil-categoria" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                            <option value="sofas">Sofás y Sillones</option>
+                            <option value="mesas">Mesas y Comedores</option>
+                            <option value="camas">Camas y Dormitorio</option>
+                        </select>
+                    </div>
+                    <div style="flex: 1; min-width: 250px;">
+                        <label style="font-weight: bold; font-size: 0.9rem; display: block; margin-bottom: 5px;">Ruta de Imagen</label>
+                        <input type="text" id="c2c-perfil-imagen" placeholder="imagenes/escritorio.jpeg"  style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                    </div>
+                </div>
+                <button type="submit" class="boton" style="margin-top: 10px;">Publicar en el Marketplace</button>
+            </form>
+        </div>
+
+        <!-- 1. VISTA DE LECTURA DE DATOS PERSONALES -->
+        <div id="vista-datos-lectura" style="background: white; padding: 20px; border-radius: 12px; color: #333; margin-bottom: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+            <h3 style="color: #1e293b; margin-bottom: 12px;">👤 Mis Datos Personales</h3>
+            <p><strong>Nombre:</strong> <span id="lbl-nombre">Maria Flores</span></p>
+            <p><strong>Correo:</strong> <span id="lbl-email">floresoregelmariafernanda@gmail.com</span></p>
+            <p><strong>Teléfono:</strong> <span id="lbl-telefono">55 9876 5432</span></p>
+            <p><strong>Dirección:</strong> <span id="lbl-direccion">Av. Insurgentes Sur 123, Col. Roma</span></p>
+            <p><strong>Código Postal:</strong> <span id="lbl-cp">06700</span></p>
+            
+            <button id="btn-activar-edicion" class="boton" style="margin-top: 15px; padding: 8px 16px; font-size: 0.9rem;">Editar Mi Información</button>
+        </div>
+        <!-- 2. FORMULARIO PARA EDITAR DATOS PERSONALES -->
+        <form id="form-editar-perfil" class="oculto" style="background: white; padding: 20px; border-radius: 12px; color: #333; margin-bottom: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+            <h3 style="color: #1e293b; margin-bottom: 15px;">✏️ Editar Mis Datos Personales</h3>
+            <div style="margin-bottom: 12px;">
+                <label style="font-weight: bold; font-size: 0.9rem; display: block; margin-bottom: 5px;">Nombre completo</label>
+                <input type="text" id="edit-nombre" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px;">
+            </div>
+            <div style="margin-bottom: 12px;">
+                <label style="font-weight: bold; font-size: 0.9rem; display: block; margin-bottom: 5px;">Correo electrónico</label>
+                <input type="email" id="edit-email" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px;">
+            </div>
+            <div style="margin-bottom: 12px;">
+                <label style="font-weight: bold; font-size: 0.9rem; display: block; margin-bottom: 5px;">Teléfono</label>
+                <input type="tel" id="edit-telefono" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px;">
+            </div>
+            <div style="margin-bottom: 12px;">
+                <label style="font-weight: bold; font-size: 0.9rem; display: block; margin-bottom: 5px;">Dirección de envío</label>
+                <input type="text" id="edit-direccion" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label style="font-weight: bold; font-size: 0.9rem; display: block; margin-bottom: 5px;">Código Postal</label>
+                <input type="text" id="edit-cp" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px;">
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <button type="submit" class="boton" style="flex:1;">Guardar Cambios</button>
+                <button type="button" id="btn-cancelar-edicion" class="boton" style="flex:1; background:#64748b;">Cancelar</button>
+            </div>
+        </form>
+        <!-- 3. HISTORIAL DE PEDIDOS -->
+        <div style="background: white; padding: 20px; border-radius: 12px; color: #333; margin-bottom: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+            <h3 style="color: #1e293b; margin-bottom: 15px;">📦 Historial de Mis Compras</h3>
+            <div style="background: #f8fafc; padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <strong style="color: #0f172a;">Pedido #PED-1042</strong>
+                    <p style="margin: 3px 0 0 0; color: #64748b; font-size: 0.85rem;">Sofá Comfort Odesa - Total: $450.000</p>
+                </div>
+                <span style="background: #e0e7ff; color: #4338ca; padding: 4px 10px; border-radius: 6px; font-weight: bold; font-size: 0.8rem;">En camino 🚚</span>
+            </div>
+        </div>
+        <!-- 4. COMENTARIOS Y RESEÑAS -->
+        <div style="background: white; padding: 22px; border-radius: 12px; color: #333; margin-bottom: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+            
+            <div style="display: flex; gap: 15px; border-bottom: 2px solid #e2e8f0; margin-bottom: 20px;">
+                <button id="tab-btn-comentarios" onclick="cambiarTabPerfil('comentarios')" style="padding: 10px 15px; border: none; background: none; font-weight: bold; font-size: 1rem; color: #2563eb; border-bottom: 3px solid #2563eb; cursor: pointer;">
+                    💬 Mis Comentarios
+                </button>
+                <button id="tab-btn-resenas" onclick="cambiarTabPerfil('resenas')" style="padding: 10px 15px; border: none; background: none; font-weight: bold; font-size: 1rem; color: #64748b; cursor: pointer;">
+                    ⭐ Reseñas Recibidas
+                </button>
+            </div>
+            
+            <div id="pane-comentarios">
+                <form id="form-comentario-perfil" style="background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0; margin-bottom: 20px;">
+                    <h4 id="titulo-form-comentario" style="margin-bottom: 10px; color: #1e293b;">Agregar Nuevo Comentario</h4>
+                    <input type="hidden" id="edit-comentario-index" value="-1">
+                    
+                    <!-- Selector de Estrellas -->
+                    <div style="margin-bottom: 10px;">
+                        <label style="font-weight: bold; font-size: 0.85rem; display: block; margin-bottom: 4px;">Calificación:</label>
+                        <select id="estrellas-comentario-perfil" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px; font-family: inherit;">
+                            <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐ (5/5 Excelente)</option>
+                            <option value="⭐⭐⭐⭐">⭐⭐⭐⭐ (4/5 Muy bueno)</option>
+                            <option value="⭐⭐⭐">⭐⭐⭐ (3/5 Bueno)</option>
+                            <option value="⭐⭐">⭐⭐ (2/5 Regular)</option>
+                            <option value="⭐">⭐ (1/5 Malo)</option>
+                        </select>
+                    </div>
+
+                    <textarea id="texto-comentario-perfil" rows="3" placeholder="Escribe tu comentario aquí..." style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; margin-bottom: 10px; font-family: inherit;"></textarea>
+                    <div style="display: flex; gap: 10px;">
+                        <button type="submit" id="btn-guardar-comentario" class="boton" style="padding: 8px 16px; font-size: 0.9rem;">Publicar Comentario</button>
+                        <button type="button" id="btn-cancelar-edit-com" onclick="resetearFormComentario()" class="oculto boton" style="background: #64748b; padding: 8px 16px; font-size: 0.9rem;">Cancelar Edición</button>
+                    </div>
+                </form>
+                <div id="contenedor-mis-comentarios" style="display: flex; flex-direction: column; gap: 12px;"></div>
+            </div>
+            
+            <div id="pane-resenas" class="oculto">
+                <p style="color: #64748b; font-size: 0.85rem; margin-bottom: 15px;">Listado de valoraciones y reseñas (Módulo de solo lectura).</p>
+                <div id="contenedor-resenas-solo-lectura" style="display: flex; flex-direction: column; gap: 12px;"></div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <p style="color: #64748b; font-size: 0.9rem;">¿Eres el Administrador del sitio? <a href="admin.html" style="color: #2563eb; font-weight: bold;">Ir al Panel de Administrador</a></p>
         </div>
     </main>
-
-    <!-- FOOTER ESTRUCTURADO -->
-    <footer class="footer-kolosos">
-        <div class="footer-contenido">
-            <div class="footer-columna">
-                <h3>NAVEGACIÓN</h3>
-                <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="catalogo.html">Catálogo</a></li>
-                    <li><a href="nosotros.html">Nosotros</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
-                    <li><a href="perfil.html">Perfil</a></li>
-                </ul>
-            </div>
-            <div class="footer-columna">
-                <h3>SERVICIO AL CLIENTE</h3>
-                <ul>
-                    <li><a href="#">Centro De Ayuda</a></li>
-                    <li><a href="#">Garantía Kolosos</a></li>
-                    <li><a href="contacto.html">Contáctanos</a></li>
-                </ul>
-            </div>
-            <div class="footer-columna">
-                <h3>PAGO</h3>
-                <div class="metodos-pago">
-                    <img src="imagenes/mastercard.jpeg" alt="Mastercard">
-                    <img src="imagenes/oxxo.png" alt="Oxxo">
-                </div>
-            </div>
-        </div>
-        <div class="footer-linea"></div>
-        <div class="footer-inferior">
-            <p>©2026 Muebles Kolosos. Todos los Derechos Reservados.</p>
+    <footer class="footer-kolosos" style="margin-top: 40px;">
+        <div class="footer-inferior" style="text-align: center; padding: 15px;">
+            <p>© 2026 Muebles Kolosos. Todos los Derechos Reservados.</p>
         </div>
     </footer>
-
-    <!-- SCRIPT INTERACTIVO CON PERSISTENCIA DE SESIÓN -->
+    <script src="global.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const boxLogin = document.getElementById("box-login");
-            const boxRegistro = document.getElementById("box-registro");
-            const boxPanel = document.getElementById("box-panel-usuario");
-            
-            const linkIrRegistro = document.getElementById("link-ir-registro");
-            const linkIrLogin = document.getElementById("link-ir-login");
-            
-            const formLogin = document.getElementById("form-login");
-            const formRegistro = document.getElementById("form-registro");
-            const formEditarPerfil = document.getElementById("form-editar-perfil");
             const vistaLectura = document.getElementById("vista-datos-lectura");
-            
+            const formEditarPerfil = document.getElementById("form-editar-perfil");
             const btnActivarEdicion = document.getElementById("btn-activar-edicion");
             const btnCancelarEdicion = document.getElementById("btn-cancelar-edicion");
-            const btnLogout = document.getElementById("btn-logout");
-            
-            const alertaAuth = document.getElementById("alerta-auth");
-            const saludoUsuario = document.getElementById("saludo-usuario");
+            const formC2CPerfil = document.getElementById("form-c2c-perfil");
 
-            // CARGAR Y VERIFICAR SESIÓN EN LOCALSTORAGE
-            function cargarDatosPerfil() {
-                const usuarioGuardado = JSON.parse(localStorage.getItem("usuario_kolosos"));
-                
-                if (usuarioGuardado && usuarioGuardado.sesionActiva) {
-                    document.getElementById("lbl-nombre").textContent = usuarioGuardado.nombre;
-                    document.getElementById("lbl-email").textContent = usuarioGuardado.email;
-                    document.getElementById("lbl-telefono").textContent = usuarioGuardado.telefono;
-                    document.getElementById("lbl-direccion").textContent = usuarioGuardado.direccion;
-                    document.getElementById("lbl-cp").textContent = usuarioGuardado.cp;
-
-                    saludoUsuario.textContent = `¡Hola, ${usuarioGuardado.nombre}!`;
-
-                    boxLogin.classList.add("oculto");
-                    boxRegistro.classList.add("oculto");
-                    boxPanel.classList.remove("oculto");
-                    vistaLectura.classList.remove("oculto");
-                    formEditarPerfil.classList.add("oculto");
-                } else {
-                    boxPanel.classList.add("oculto");
-                    boxLogin.classList.remove("oculto");
-                }
+            if (formC2CPerfil) {
+                formC2CPerfil.addEventListener("submit", (e) => {
+                    e.preventDefault();
+                    const precioTexto = document.getElementById("c2c-perfil-precio").value;
+                    const precioNumerico = parseInt(precioTexto.replace(/\D/g, "")) || 0;
+                    
+                    const nuevoItem = {
+                        id: "c2c-" + Date.now(),
+                        nombre: document.getElementById("c2c-perfil-nombre").value + " (C2C)",
+                        categoria: document.getElementById("c2c-perfil-categoria").value,
+                        precio: precioTexto,
+                        precioNum: precioNumerico,
+                        imagen: document.getElementById("c2c-perfil-imagen").value,
+                        stock: 1
+                    };
+                    
+                    let pubs = JSON.parse(localStorage.getItem("productos_c2c")) || [];
+                    pubs.push(nuevoItem);
+                    localStorage.setItem("productos_c2c", JSON.stringify(pubs));
+                    
+                    let catalogoGeneral = JSON.parse(localStorage.getItem("productos_kolosos")) || [];
+                    catalogoGeneral.push(nuevoItem);
+                    localStorage.setItem("productos_kolosos", JSON.stringify(catalogoGeneral));
+                    
+                    formC2CPerfil.reset();
+                    if (typeof mostrarMensajeVisual === "function") {
+                        mostrarMensajeVisual("🚀 ¡Producto publicado con éxito desde tu perfil!", "exito");
+                    }
+                });
             }
 
-            // EJECUTAR COMPROBACIÓN
-            cargarDatosPerfil();
-
-            // NAVEGACIÓN ENTRE LOGIN Y REGISTRO
-            linkIrRegistro.addEventListener("click", (e) => {
-                e.preventDefault();
-                boxLogin.classList.add("oculto");
-                boxRegistro.classList.remove("oculto");
-                alertaAuth.classList.add("oculto");
-            });
-
-            linkIrLogin.addEventListener("click", (e) => {
-                e.preventDefault();
-                boxRegistro.classList.add("oculto");
-                boxLogin.classList.remove("oculto");
-                alertaAuth.classList.add("oculto");
-            });
-
-            // INICIAR SESIÓN
-            formLogin.addEventListener("submit", (e) => {
-                e.preventDefault();
-                const emailIngresado = document.getElementById("login-email").value;
-                
-                const datosUsuario = {
+            function cargarDatosCliente() {
+                const usuario = JSON.parse(localStorage.getItem("usuario_cliente")) || {
                     nombre: "Maria Flores",
-                    email: emailIngresado,
+                    email: "floresoregelmariafernanda@gmail.com",
                     telefono: "55 9876 5432",
                     direccion: "Av. Insurgentes Sur 123, Col. Roma",
-                    cp: "06700",
-                    sesionActiva: true
+                    cp: "06700"
                 };
+                document.getElementById("lbl-nombre").textContent = usuario.nombre;
+                document.getElementById("lbl-email").textContent = usuario.email;
+                document.getElementById("lbl-telefono").textContent = usuario.telefono;
+                document.getElementById("lbl-direccion").textContent = usuario.direccion;
+                document.getElementById("lbl-cp").textContent = usuario.cp;
+            }
 
-                localStorage.setItem("usuario_kolosos", JSON.stringify(datosUsuario));
-                cargarDatosPerfil();
-
-                alertaAuth.textContent = "¡Has iniciado sesión con éxito!";
-                alertaAuth.classList.remove("oculto");
-                formLogin.reset();
-            });
-
-            // CREAR CUENTA
-            formRegistro.addEventListener("submit", (e) => {
-                e.preventDefault();
-                
-                const datosNuevoUsuario = {
-                    nombre: document.getElementById("reg-nombre").value,
-                    email: document.getElementById("reg-email").value,
-                    telefono: document.getElementById("reg-telefono").value,
-                    direccion: document.getElementById("reg-direccion").value,
-                    cp: document.getElementById("reg-cp").value,
-                    sesionActiva: true
-                };
-
-                localStorage.setItem("usuario_kolosos", JSON.stringify(datosNuevoUsuario));
-                cargarDatosPerfil();
-
-                alertaAuth.textContent = "¡Cuenta creada e inicio de sesión exitoso!";
-                alertaAuth.classList.remove("oculto");
-                formRegistro.reset();
-            });
-
-            // ACTIVAR MODO EDICIÓN
             btnActivarEdicion.addEventListener("click", () => {
                 document.getElementById("edit-nombre").value = document.getElementById("lbl-nombre").textContent;
                 document.getElementById("edit-email").value = document.getElementById("lbl-email").textContent;
                 document.getElementById("edit-telefono").value = document.getElementById("lbl-telefono").textContent;
                 document.getElementById("edit-direccion").value = document.getElementById("lbl-direccion").textContent;
                 document.getElementById("edit-cp").value = document.getElementById("lbl-cp").textContent;
-
+                
                 vistaLectura.classList.add("oculto");
                 formEditarPerfil.classList.remove("oculto");
-                alertaAuth.classList.add("oculto");
             });
 
-            // CANCELAR EDICIÓN
             btnCancelarEdicion.addEventListener("click", () => {
                 formEditarPerfil.classList.add("oculto");
                 vistaLectura.classList.remove("oculto");
             });
 
-            // GUARDAR CAMBIOS
             formEditarPerfil.addEventListener("submit", (e) => {
                 e.preventDefault();
-                
-                const datosActualizados = {
-                    nombre: document.getElementById("edit-nombre").value,
-                    email: document.getElementById("edit-email").value,
-                    telefono: document.getElementById("edit-telefono").value,
-                    direccion: document.getElementById("edit-direccion").value,
-                    cp: document.getElementById("edit-cp").value,
-                    sesionActiva: true
+                const datosNuevos = {
+                    nombre: document.getElementById("edit-nombre").value || "Maria Flores",
+                    email: document.getElementById("edit-email").value || "floresoregelmariafernanda@gmail.com",
+                    telefono: document.getElementById("edit-telefono").value || "55 9876 5432",
+                    direccion: document.getElementById("edit-direccion").value || "Av. Insurgentes Sur 123, Col. Roma",
+                    cp: document.getElementById("edit-cp").value || "06700"
                 };
-
-                localStorage.setItem("usuario_kolosos", JSON.stringify(datosActualizados));
-                cargarDatosPerfil();
-
-                alertaAuth.textContent = "¡Tus datos han sido actualizados correctamente!";
-                alertaAuth.classList.remove("oculto");
+                
+                localStorage.setItem("usuario_cliente", JSON.stringify(datosNuevos));
+                cargarDatosCliente();
+                
+                formEditarPerfil.classList.add("oculto");
+                vistaLectura.classList.remove("oculto");
+                if (typeof mostrarMensajeVisual === "function") {
+                    mostrarMensajeVisual("✅ Datos actualizados con éxito", "exito");
+                }
             });
 
-            // CERRAR SESIÓN
-            btnLogout.addEventListener("click", () => {
-                localStorage.removeItem("usuario_kolosos");
-                boxPanel.classList.add("oculto");
-                boxLogin.classList.remove("oculto");
-                alertaAuth.textContent = "Sesión cerrada correctamente.";
-                alertaAuth.classList.remove("oculto");
-            });
+            cargarDatosCliente();
+            cargarComentariosPerfil();
+            cargarResenasSoloLectura();
         });
-    </script>
-    <script src="global.js"></script>
-</body>
 
+        window.cambiarTabPerfil = function(tab) {
+            const paneComentarios = document.getElementById("pane-comentarios");
+            const paneResenas = document.getElementById("pane-resenas");
+            const btnCom = document.getElementById("tab-btn-comentarios");
+            const btnRes = document.getElementById("tab-btn-resenas");
+            if (tab === 'comentarios') {
+                paneComentarios.classList.remove("oculto");
+                paneResenas.classList.add("oculto");
+                btnCom.style.color = "#2563eb";
+                btnCom.style.borderBottom = "3px solid #2563eb";
+                btnRes.style.color = "#64748b";
+                btnRes.style.borderBottom = "none";
+            } else {
+                paneResenas.classList.remove("oculto");
+                paneComentarios.classList.add("oculto");
+                btnRes.style.color = "#2563eb";
+                btnRes.style.borderBottom = "3px solid #2563eb";
+                btnCom.style.color = "#64748b";
+                btnCom.style.borderBottom = "none";
+            }
+        };
+
+        function cargarComentariosPerfil() {
+            const contenedor = document.getElementById("contenedor-mis-comentarios");
+            let comentarios = JSON.parse(localStorage.getItem("comentarios_kolosos")) || [];
+            contenedor.innerHTML = "";
+            if (comentarios.length === 0) {
+                contenedor.innerHTML = `<p style="color: #64748b; text-align: center; padding: 15px;">No has publicado ningún comentario aún.</p>`;
+                return;
+            }
+            comentarios.forEach((c, index) => {
+                const div = document.createElement("div");
+                div.style = "background: #f8fafc; padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: flex-start;";
+                div.innerHTML = `
+                    <div style="flex: 1; margin-right: 15px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                            <strong style="color: #0f172a;">${c.autor || 'Maria Flores'}</strong>
+                            <span style="color: #f59e0b; font-size: 0.9rem;">${c.estrellas || '⭐⭐⭐⭐⭐'}</span>
+                        </div>
+                        <p style="margin: 0; color: #334155; font-size: 0.9rem;">"${c.texto}"</p>
+                        <small style="color: #64748b; font-size: 0.75rem;">${c.fecha || 'Reciente'}</small>
+                    </div>
+                    <div style="display: flex; gap: 6px;">
+                        <button type="button" onclick="editarComentarioPerfil(${index})" style="background: #2563eb; color: white; border: none; padding: 6px 10px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; font-weight: bold;">✏️ Editar</button>
+                        <button type="button" onclick="eliminarComentarioPerfil(${index})" style="background: #ef4444; color: white; border: none; padding: 6px 10px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; font-weight: bold;">🗑️ Borrar</button>
+                    </div>
+                `;
+                contenedor.appendChild(div);
+            });
+        }
+
+        document.getElementById("form-comentario-perfil").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const textoInput = document.getElementById("texto-comentario-perfil").value.trim() || "Sin comentario";
+            const estrellasInput = document.getElementById("estrellas-comentario-perfil").value;
+            const editIndex = parseInt(document.getElementById("edit-comentario-index").value);
+            let comentarios = JSON.parse(localStorage.getItem("comentarios_kolosos")) || [];
+            
+            if (editIndex >= 0 && editIndex < comentarios.length) {
+                comentarios[editIndex].texto = textoInput;
+                comentarios[editIndex].estrellas = estrellasInput;
+                comentarios[editIndex].fecha = "Editado recientemente";
+                if (typeof mostrarMensajeVisual === "function") {
+                    mostrarMensajeVisual("✏️ Comentario actualizado con éxito", "exito");
+                }
+            } else {
+                comentarios.unshift({
+                    autor: "Maria Flores",
+                    texto: textoInput,
+                    estrellas: estrellasInput,
+                    fecha: "Justo ahora"
+                });
+                if (typeof mostrarMensajeVisual === "function") {
+                    mostrarMensajeVisual("💬 Comentario publicado con éxito", "exito");
+                }
+            }
+            localStorage.setItem("comentarios_kolosos", JSON.stringify(comentarios));
+            resetearFormComentario();
+            cargarComentariosPerfil();
+        });
+
+        window.editarComentarioPerfil = function(index) {
+            let comentarios = JSON.parse(localStorage.getItem("comentarios_kolosos")) || [];
+            if (comentarios[index]) {
+                document.getElementById("texto-comentario-perfil").value = comentarios[index].texto;
+                if (comentarios[index].estrellas) {
+                    document.getElementById("estrellas-comentario-perfil").value = comentarios[index].estrellas;
+                }
+                document.getElementById("edit-comentario-index").value = index;
+                document.getElementById("titulo-form-comentario").textContent = "✏️ Editar Mi Comentario";
+                document.getElementById("btn-guardar-comentario").textContent = "Guardar Cambios";
+                document.getElementById("btn-cancelar-edit-com").classList.remove("oculto");
+                document.getElementById("texto-comentario-perfil").focus();
+            }
+        };
+
+        window.resetearFormComentario = function() {
+            document.getElementById("form-comentario-perfil").reset();
+            document.getElementById("edit-comentario-index").value = "-1";
+            document.getElementById("titulo-form-comentario").textContent = "Agregar Nuevo Comentario";
+            document.getElementById("btn-guardar-comentario").textContent = "Publicar Comentario";
+            document.getElementById("btn-cancelar-edit-com").classList.add("oculto");
+        };
+
+        window.eliminarComentarioPerfil = function(index) {
+            if (confirm("¿Estás seguro de que deseas borrar este comentario?")) {
+                let comentarios = JSON.parse(localStorage.getItem("comentarios_kolosos")) || [];
+                comentarios.splice(index, 1);
+                localStorage.setItem("comentarios_kolosos", JSON.stringify(comentarios));
+                cargarComentariosPerfil();
+                if (typeof mostrarMensajeVisual === "function") {
+                    mostrarMensajeVisual("🗑️ Comentario eliminado", "error");
+                }
+            }
+        };
+
+        function cargarResenasSoloLectura() {
+            const contenedor = document.getElementById("contenedor-resenas-solo-lectura");
+            const resenasObjeto = JSON.parse(localStorage.getItem("resenas_productos_c2c")) || {};
+            contenedor.innerHTML = "";
+            let listaResenas = [];
+            Object.keys(resenasObjeto).forEach(idProd => {
+                if (Array.isArray(resenasObjeto[idProd])) {
+                    resenasObjeto[idProd].forEach(r => listaResenas.push(r));
+                }
+            });
+            if (listaResenas.length === 0) {
+                contenedor.innerHTML = `<p style="color: #64748b; text-align: center; padding: 15px;">No hay reseñas de productos registradas.</p>`;
+                return;
+            }
+            listaResenas.forEach(r => {
+                const div = document.createElement("div");
+                div.style = "background: #f8fafc; padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0;";
+                div.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                        <strong style="color: #0f172a;">👤 ${r.autor || 'Cliente Kolosos'}</strong>
+                        <span style="color: #f59e0b; font-size: 0.9rem;">${r.estrellas || '⭐⭐⭐⭐⭐'}</span>
+                    </div>
+                    <p style="margin: 4px 0 0 0; color: #475569; font-size: 0.9rem;">"${r.texto || r.comentario || 'Excelente producto.'}"</p>
+                `;
+                contenedor.appendChild(div);
+            });
+        }
+    </script>
+</body>
 </html>
